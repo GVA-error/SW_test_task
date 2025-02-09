@@ -7,10 +7,6 @@ file(GLOB_RECURSE SOURCES src/*.cpp src/*.hpp)
 add_executable(sw_battle_test ${SOURCES}
     src/simulation/simulation.h src/simulation/simulation.cpp
     src/IO/Events/Error.hpp
-    src/entities/gamefield.h src/entities/gamefield.cpp
-    src/utils/Coordinates.h
-    src/utils/UnitPaths.h src/utils/UnitPaths.cpp
-    src/entities/Unit.h src/entities/Unit.cpp
 )
 
 target_include_directories(sw_battle_test PUBLIC src/)

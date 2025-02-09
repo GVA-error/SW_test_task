@@ -15,31 +15,46 @@
 #include <fstream>
 #include <iostream>
 
+#include "simulation/simulation.h"
+
 int main(int argc, char** argv)
 {
 	using namespace sw;
 
-	if (argc != 2)
+	/*if (argc != 2)
 	{
 		throw std::runtime_error("Error: No file specified in command line argument");
 	}
-
 	std::ifstream file(argv[1]);
-	if (!file)
+	*/
+    std::ifstream file("/home/gva/projects/SW_test_task/commands_example.txt");
+	
+    if (!file)
 	{
 		throw std::runtime_error("Error: File not found - " + std::string(argv[1]));
 	}
 
-	// Code for example...
+    Simulation simulation;
+    io::CommandParser parser;
+    auto simulationParse = [&](auto command) {
+        simulation.command(command);
+    };
 
-	std::cout << "Commands:\n";
-	io::CommandParser parser;
-	parser.add<io::CreateMap>([](auto command) { printDebug(std::cout, command); })
-		.add<io::SpawnSwordsman>([](auto command) { printDebug(std::cout, command); })
-		.add<io::SpawnHunter>([](auto command) { printDebug(std::cout, command); })
-		.add<io::March>([](auto command) { printDebug(std::cout, command); });
+    parser.add<io::CreateMap>(simulationParse)
+        .add<io::SpawnSwordsman>(simulationParse)
+        .add<io::SpawnHunter>(simulationParse)
+        .add<io::March>(simulationParse);
 
 	parser.parse(file);
+
+    while (true)
+    {
+        auto status = simulation.tick();
+        if (status.isFinished)
+            break;
+    }
+
+    /*
 
 	std::cout << "\n\nEvents:\n";
 
@@ -77,6 +92,7 @@ int main(int argc, char** argv)
 
 	eventLog.log(8, io::UnitAttacked{2, 3, 5, 0});
 	eventLog.log(8, io::UnitDied{3});
+    */
 
 	return 0;
 }

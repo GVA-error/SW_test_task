@@ -1,11 +1,10 @@
 #pragma once
 
 #include <cstdint>
-#include <iosfwd>
 
 namespace sw::io
 {
-	struct CreateMap
+    struct CreateMap
 	{
 		constexpr static const char* Name = "CREATE_MAP";
 

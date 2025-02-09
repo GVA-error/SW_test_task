@@ -5,7 +5,7 @@
 
 namespace sw::io
 {
-	struct SpawnHunter
+    struct SpawnHunter
 	{
 		constexpr static const char* Name = "SPAWN_HUNTER";
 

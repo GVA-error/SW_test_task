@@ -5,7 +5,7 @@
 
 namespace sw::io
 {
-	struct March
+    struct March
 	{
 		constexpr static const char* Name = "MARCH";
 

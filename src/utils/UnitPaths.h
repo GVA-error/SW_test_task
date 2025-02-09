@@ -1,0 +1,30 @@
+#ifndef UNITPATHS_H
+#define UNITPATHS_H
+
+#include <cstdint>
+#include <map>
+
+#include "utils/Coordinates.h"
+
+namespace sw::utils
+{
+    // Класс для работы с путями юнитов.
+    class UnitPaths
+    {
+    public:
+        UnitPaths();
+
+        // Устанавливает точку цели для юнита
+        void setUnitTarget(uint32_t id, const FieldPos&);
+
+        // Передвигает юнита на новую позицию из возможных, на один шаг. Выбирает наиболее близкую к цели.
+        // Дойдя до финальной точки, юнит остановится.
+        FieldPos step(uint32_t id, const std::map<FieldPos, bool>& landObstacle);
+
+    private:
+        // По id возвращает позицию цели юнита
+        std::map<uint32_t, FieldPos> target;
+    };
+}
+
+#endif // UNITPATHS_H
