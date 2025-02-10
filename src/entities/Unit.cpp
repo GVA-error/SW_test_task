@@ -20,4 +20,13 @@ namespace sw::entities
     }
 
 
+    bool Unit::isCorrect() const
+    {
+        return f_isCorrect;
+    }
+
+    void Unit::markAsIncorrect()
+    {
+        f_isCorrect = true;
+    }
 }

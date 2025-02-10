@@ -36,6 +36,7 @@ namespace sw::entities
     public:
 
         Unit() = delete;
+
         // id - уникальный идинтификатор юнита
         // typeName - служит в целях дебага
         Unit(uint32_t id, const std::string& typeName = "defaultUnit");
@@ -48,19 +49,25 @@ namespace sw::entities
         int32_t getState(const UnitState&) const;
 
         // Обновляет численные значения
-        void set(const UnitMechanic&, bool);
+        void set(const UnitMechanic&, bool f = true);
         void set(const UnitAttributes&, int32_t);
         void set(const UnitState&, int32_t);
+
+        // дебаг информация о юните
+        bool isCorrect() const;
+        void markAsIncorrect();
 
     private:
         std::string typeName;
         uint32_t id;
 
+        // Был ли юнит создан корректно
+        bool f_isCorrect = true;
+
         // Стат блок
         std::map<UnitMechanic,   bool>    mechanic;
         std::map<UnitAttributes, int32_t> attributes;
         std::map<UnitState,      int32_t> status;
-
     };
 
 };

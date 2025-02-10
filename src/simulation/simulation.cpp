@@ -9,8 +9,12 @@ namespace sw
     Simulation::SimulationStatus Simulation::tick()
     {
         SimulationStatus stat;
+        stat.isFinished = false;
         stat.tick = currentTick;
 
+        turtStart();
+        turt();
+        turtFinish();
 
         currentTick++;
         return stat;
@@ -41,10 +45,21 @@ namespace sw
         auto unitId  = command.unitId;
         auto targetX = command.targetX;
         auto targetY = command.targetY;
-        auto w = ;
-        auto h = ;
-        auto unitX = ;
-        auto unitY = ;
+        if (gameField == nullptr)
+        {
+            eventLog.log(currentTick, sw::io::Error("Simulation::March field is not created. Use Simulation::CreateMap before."));
+            return;
+        }
+
+        auto w = gameField->getWidth();
+        auto h = gameField->getHeight();
+
+        auto unitPos = gameField->getUnitPosition(unitId);
+        if (unitPos == gameField->UNDEFINED_POSITION)
+        {
+            eventLog.log(currentTick, sw::io::Error("Simulation::March field is not created. Use Simulation::CreateMap before."));
+            return;
+        }
 
         bool f_outOfMap = false;
         f_outOfMap |= targetX < 0;
@@ -58,13 +73,35 @@ namespace sw
             return;
         }
 
-        eventLog.log(currentTick, io::MarchStarted{unitId, unitX, unitY, targetX, targetY});
+        gameField->March(unitId, targetX, targetY);
+        eventLog.log(currentTick, io::MarchStarted{unitId, unitPos.x, unitPos.y, targetX, targetY});
     }
-    void Simulation::command(sw::io::SpawnHunter&)
+
+    void Simulation::command(sw::io::SpawnSwordsman& sm)
+    {
+        spawnCommand(sm);
+    }
+
+    void Simulation::command(sw::io::SpawnHunter& h)
+    {
+        spawnCommand(h);
+    }
+
+    void turtStart()
     {
 
     }
-    void Simulation::command(sw::io::SpawnSwordsman&)
+
+    bool turt()
+    {
+        bool f_activityFound = false;
+
+
+
+        return f_activityFound;
+    }
+
+    void turtFinish()
     {
 
     }

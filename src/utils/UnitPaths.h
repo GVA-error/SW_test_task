@@ -16,6 +16,7 @@ namespace sw::utils
 
         // Устанавливает точку цели для юнита
         void setUnitTarget(uint32_t id, const FieldPos&);
+        void setUnitTarget(uint32_t id, uint32_t x, uint32_t y);
 
         // Передвигает юнита на новую позицию из возможных, на один шаг. Выбирает наиболее близкую к цели.
         // Дойдя до финальной точки, юнит остановится.

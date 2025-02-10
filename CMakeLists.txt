@@ -11,6 +11,7 @@ add_executable(sw_battle_test ${SOURCES}
     src/utils/Coordinates.h
     src/utils/UnitPaths.h src/utils/UnitPaths.cpp
     src/entities/Unit.h src/entities/Unit.cpp
+    src/mechanics/Spawn.h src/mechanics/Spawn.cpp
 )
 
 target_include_directories(sw_battle_test PUBLIC src/)
