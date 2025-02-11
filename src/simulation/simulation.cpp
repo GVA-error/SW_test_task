@@ -64,7 +64,7 @@ namespace sw
         auto h = gameField->getHeight();
 
         auto unitPos = gameField->getUnitPosition(unitId);
-        if (unitPos == gameField->UNDEFINED_POSITION)
+        if (unitPos == utils::UNDEFINED_POSITION)
         {
             eventLog.log(currentTick, sw::io::Error("Simulation::March field is not created. Use Simulation::CreateMap before."));
             return;

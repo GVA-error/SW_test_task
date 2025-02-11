@@ -2,6 +2,9 @@
 #define AI_SPAWNSWORDSMAN_H
 
 #include "ai.h"
+#include "mechanics/meleeattack.h"
+#include "mechanics/march.h"
+#include "entities/UnitEnums.h"
 
 namespace sw::AI
 {

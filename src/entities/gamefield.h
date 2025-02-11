@@ -25,8 +25,6 @@ namespace sw::entities
     class GameField
     {
     public:
-        const sw::utils::FieldPos UNDEFINED_POSITION = { UINT32_MAX, UINT32_MAX };
-
         GameField() = delete;
         GameField(uint32_t w, uint32_t h);
 

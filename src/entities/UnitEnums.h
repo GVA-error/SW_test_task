@@ -1,6 +1,8 @@
 #ifndef UNITENUMS_H
 #define UNITENUMS_H
 
+#include <cstdint>
+
 // Различные перечисления используемые в стат блоке юнитов
 
 namespace sw::entities
@@ -32,6 +34,9 @@ namespace sw::entities
     {
         LAND_SOLID, // Юнит занимает наземную клетку на поле
     };
+
+    // Не определённый id юнита
+    static const uint32_t UNDEFINED_UNIT_ID = UINT32_MAX;
 }
 
 #endif // UNITENUMS_H

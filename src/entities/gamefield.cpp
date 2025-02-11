@@ -23,7 +23,7 @@ namespace sw::entities
     sw::utils::FieldPos GameField::getUnitPosition(uint32_t unitId) const
     {
         if (unitPosition.find(unitId) == unitPosition.end())
-            return UNDEFINED_POSITION;
+            return utils::UNDEFINED_POSITION;
         return unitPosition.at(unitId);
     }
 

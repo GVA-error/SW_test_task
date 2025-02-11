@@ -9,7 +9,8 @@
 #include "entities/gamefield.h"
 
 // Механики создания юнитов на игровом поле
-namespace sw::mechanics::spawn
+// Отвечает за заполнение стат блока юнитов
+namespace sw::mechanics
 {
     using namespace sw::entities;
 

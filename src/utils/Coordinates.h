@@ -56,6 +56,7 @@ namespace sw::utils
     uint32_t distance(const XYZ_vert& a, const XYZ_vert& b);
 
     typedef XY_vert FieldPos;
+    const FieldPos UNDEFINED_POSITION = { UINT32_MAX, UINT32_MAX };
 }
 
 // Хеш функции для мапов и сетов

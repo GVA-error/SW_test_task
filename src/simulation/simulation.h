@@ -80,7 +80,7 @@ namespace sw
                 eventLog.log(currentTick, sw::io::Error("Simulation::spawnCommand trying to recreate unit with same id."));
                 return;
             }
-            auto unit = sw::mechanics::spawn::Spawn(gameField, command);
+            auto unit = sw::mechanics::Spawn(gameField, command);
             if (unit.isCorrect() == false)
             {
                 auto logMess = "Simulation::spawnCommand can not spawn by this command. Reason: " + unit.getIncorrectnessReason();

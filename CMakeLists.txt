@@ -17,6 +17,12 @@ add_executable(sw_battle_test ${SOURCES}
     src/AI/ai.h src/AI/ai.cpp
     src/AI/ai_spawnhunter.h src/AI/ai_spawnhunter.cpp
     src/utils/Coordinates.cpp
+    src/mechanics/meleeattack.h src/mechanics/meleeattack.cpp
+    src/mechanics/rangeattack.h src/mechanics/rangeattack.cpp
+    src/mechanics/march.h src/mechanics/march.cpp
+
+
+
 
 
 )

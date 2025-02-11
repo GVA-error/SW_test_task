@@ -1,6 +1,6 @@
 #include "Spawn.h"
 
-namespace sw::mechanics::spawn
+namespace sw::mechanics
 {
     using namespace sw::entities;
     // Создание юнита представляет из себя заполнение его стат блока
