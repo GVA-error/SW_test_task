@@ -31,7 +31,7 @@ namespace sw::entities
         GameField(uint32_t w, uint32_t h);
 
         // Добавляет бекенд для юнита
-        bool addUnit(sw::entities::Unit&, uint32_t x, uint32_t y, bool f_solid=true);
+        bool addUnit(sw::entities::Unit&, uint32_t x, uint32_t y);
 
         // Обновляет позицию юнита. При коллизии юнит не меняет позию.
         // Для более простого решения коллизий быстрых юнитов, всегда двигаемся на один шаг.
@@ -74,7 +74,7 @@ namespace sw::entities
         std::set<uint32_t> deadSet;
 
         // Список всех юнитов на данной позиции
-        std::map<sw::utils::FieldPos, std::set<uint32_t>> unitsOnPosition;
+        std::unordered_map<sw::utils::FieldPos, std::set<uint32_t>> unitsOnPosition;
 
         // Текущая позиция юнита на поле
         std::map<uint32_t, sw::utils::FieldPos> unitPosition;
@@ -83,7 +83,7 @@ namespace sw::entities
         std::map<uint32_t, bool> unitIsLandObstacle;
 
         // Есть ли на клетке юнит, мешающий пройти по земле
-        std::map<sw::utils::FieldPos, bool> landObstacle;
+        std::unordered_map<sw::utils::FieldPos, bool> landObstacle;
 
         // Просчитывает пути, давая следующую точку для шага
         sw::utils::UnitPaths unitPaths;

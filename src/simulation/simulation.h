@@ -19,6 +19,7 @@
 
 #include "entities/gamefield.h"
 #include "mechanics/Spawn.h"
+#include "AI/ai.h"
 
 namespace sw
 {
@@ -54,15 +55,23 @@ namespace sw
         // очерёдность ходов
         std::list<uint32_t> moveOrder;
         std::map<uint32_t, sw::entities::Unit> unitsHeap;
+        // искуственный интеллект юнита
+        std::map<uint32_t, std::unique_ptr<AI::AI>> unitAI;
 
         // События начала хода
         void turtStart();
         // Исполнение механик хода юнитами.
         // Возвращает было ли совершено какое либо действие юнитами.
-        bool turt();
+        bool turn();
+        // .. юнитом
+        bool turn(uint32_t unitId);
+        bool turn(sw::entities::Unit&);
         // События конца хода
         void turtFinish();
 
+        // Обобщённое поведение создания юнита
+        // Создаёт как самого юнита, так и соответствующие бекэнды
+        // Добавляет его в очередь хода.
         template <typename TCommand>
         void spawnCommand(TCommand& command)
         {
@@ -74,7 +83,8 @@ namespace sw
             auto unit = sw::mechanics::spawn::Spawn(gameField, command);
             if (unit.isCorrect() == false)
             {
-                eventLog.log(currentTick, sw::io::Error("Simulation::spawnCommand can not spawn on this position."));
+                auto logMess = "Simulation::spawnCommand can not spawn by this command. Reason: " + unit.getIncorrectnessReason();
+                eventLog.log(currentTick, sw::io::Error(logMess));
                 return;
             }
             moveOrder.push_back(unit.getId());

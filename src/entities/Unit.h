@@ -5,69 +5,57 @@
 #include <map>
 #include <string>
 
+#include "UnitEnums.h"
+
 namespace sw::entities
 {
-
-    // Механики позволенные для юнита
-    enum UnitMechanic {
-        MOVE,
-        RANGE_ATTACK,
-        MELEE_ATTACK
-    };
-
-    // Характеристики юнита.
-    enum UnitAttributes {
-        Strength,
-        Agility,
-        Range
-    };
-
-    // Переменные статусы, эффекты и таймеры.
-    enum UnitState
-    {
-        HP
-    };
-
     // Описывает поведение юнита.
     // То какие механики он может применять, его характеристики, временные состояния и т. д.
-    // Для создания использум sw::mechanics::spawn::*
+    // Для создания используeм sw::mechanics::spawn::*
     class Unit
     {
     public:
-
-        Unit() = delete;
-
+        Unit(){};
         // id - уникальный идинтификатор юнита
         // typeName - служит в целях дебага
         Unit(uint32_t id, const std::string& typeName = "defaultUnit");
 
-        const std::string getTypeName() const;
         const uint32_t    getId() const;
+        const std::string getTypeName() const;
 
+        // Геттеры статблока
         bool isAllowed(const UnitMechanic&) const;
         int32_t getAttribute(const UnitAttributes&) const;
         int32_t getState(const UnitState&) const;
+        int32_t is(const UnitType&) const;
 
-        // Обновляет численные значения
+        // Обновляет значения стат блока
         void set(const UnitMechanic&, bool f = true);
         void set(const UnitAttributes&, int32_t);
         void set(const UnitState&, int32_t);
+        void set(const UnitType&);
 
         // дебаг информация о юните
         bool isCorrect() const;
-        void markAsIncorrect();
+        std::string getIncorrectnessReason() const;
+        void markAsIncorrect(const std::string& incorrectnessReason = "we don\'t know why");
 
     private:
+        // typeName используется для более простого дебага
         std::string typeName;
         uint32_t id;
 
-        // Был ли юнит создан корректно
+        // Был ли юнит создан корректно, не было ли иных ошибок.
         bool f_isCorrect = true;
+        // Описание причины не корректности
+        std::string incorrectnessReason;
 
         // Стат блок
         std::map<UnitMechanic,   bool>    mechanic;
         std::map<UnitAttributes, int32_t> attributes;
         std::map<UnitState,      int32_t> status;
+        std::map<UnitType,       bool>    type;
+
     };
 
 };

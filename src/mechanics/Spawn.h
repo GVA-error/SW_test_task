@@ -8,28 +8,49 @@
 #include "IO/Commands/SpawnHunter.hpp"
 #include "entities/gamefield.h"
 
-// Механики создания юнитов
+// Механики создания юнитов на игровом поле
 namespace sw::mechanics::spawn
 {
     using namespace sw::entities;
-
-    template <class UnitSpawnCommand>
-    Unit baseLiveUnit(std::shared_ptr<sw::entities::GameField>& gf, const UnitSpawnCommand& u, const std::string& name)
-    {
-        Unit unit(u.unitId, name);
-        unit.set(UnitState::HP, u.hp);
-        unit.set(UnitMechanic::MOVE);
-        auto f_success = gf->addUnit(unit, u.x, u.y);
-        if (f_success == false)
-            unit.markAsIncorrect();
-        return unit;
-    }
 
     // SpawnSwordsman
     Unit Spawn(std::shared_ptr<sw::entities::GameField>&, const sw::io::SpawnSwordsman&);
 
     // SpawnHunter
     Unit Spawn(std::shared_ptr<sw::entities::GameField>&, const sw::io::SpawnHunter&);
+
+    // __base* - создание юнитов с предопределённым стат блоком
+    // По умолчанию юнит занимает клетку на поле. UnitType::LAND_SOLID.
+    template <class UnitSpawnCommand>
+    Unit __baseUnit(std::shared_ptr<sw::entities::GameField>& gf, const UnitSpawnCommand& u, const std::string& name)
+    {
+        Unit unit(u.unitId, name);
+        if (gf == nullptr)
+        {
+            unit.markAsIncorrect("can not spawn unit without field");
+            return unit;
+        }
+        unit.set(UnitType::LAND_SOLID);
+        auto f_success = gf->addUnit(unit, u.x, u.y);
+        if (f_success == false)
+        {
+            unit.markAsIncorrect("can not add unit in this coordinates");
+            return unit;
+        }
+        return unit;
+    }
+
+    // Подвижный юнит с хп
+    template <class UnitSpawnCommand>
+    Unit __baseLiveUnit(std::shared_ptr<sw::entities::GameField>& gf, const UnitSpawnCommand& u, const std::string& name)
+    {
+        auto unit = __baseUnit(gf, u, name);
+        if (unit.isCorrect() == false)
+            return unit;
+        unit.set(UnitMechanic::MOVE);
+        unit.set(UnitState::HP, u.hp);
+        return unit;
+    }
 
 }
 

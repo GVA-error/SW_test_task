@@ -7,7 +7,7 @@ namespace sw::mechanics::spawn
 
     Unit Spawn(std::shared_ptr<sw::entities::GameField>& gf, const sw::io::SpawnSwordsman& sm)
     {
-        auto unit = baseLiveUnit(gf, sm, "SpawnSwordsman");
+        auto unit = __baseLiveUnit(gf, sm, "SpawnSwordsman");
 
         unit.set(UnitAttributes::Strength, sm.strength);
 
@@ -18,7 +18,13 @@ namespace sw::mechanics::spawn
 
     Unit Spawn(std::shared_ptr<sw::entities::GameField>& gf, const sw::io::SpawnHunter& h)
     {
-        auto unit = baseLiveUnit(gf, h, "SpawnHunter");
+        auto unit = __baseLiveUnit(gf, h, "SpawnHunter");
+
+        if (h.range < 2)
+        {
+            unit.markAsIncorrect("we try SpawnHunter with small range");
+            return unit;
+        }
 
         unit.set(UnitAttributes::Strength, h.strength);
         unit.set(UnitAttributes::Agility,  h.agility);

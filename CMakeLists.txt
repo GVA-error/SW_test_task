@@ -12,6 +12,13 @@ add_executable(sw_battle_test ${SOURCES}
     src/utils/UnitPaths.h src/utils/UnitPaths.cpp
     src/entities/Unit.h src/entities/Unit.cpp
     src/mechanics/Spawn.h src/mechanics/Spawn.cpp
+    src/entities/UnitEnums.h
+    src/AI/ai_spawnswordsman.h src/AI/ai_spawnswordsman.cpp
+    src/AI/ai.h src/AI/ai.cpp
+    src/AI/ai_spawnhunter.h src/AI/ai_spawnhunter.cpp
+    src/utils/Coordinates.cpp
+
+
 )
 
 target_include_directories(sw_battle_test PUBLIC src/)

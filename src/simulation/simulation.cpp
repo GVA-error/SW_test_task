@@ -1,10 +1,15 @@
 #include "simulation.h"
 
+#include "AI/ai_spawnswordsman.h"
+#include "AI/ai_spawnhunter.h"
 
 namespace sw
 {
 
-    Simulation::Simulation() {}
+    Simulation::Simulation()
+    {
+
+    }
 
     Simulation::SimulationStatus Simulation::tick()
     {
@@ -13,7 +18,11 @@ namespace sw
         stat.tick = currentTick;
 
         turtStart();
-        turt();
+        bool isActivityFound = turn();
+        if (isActivityFound)
+            stat.isFinished = false;
+        else
+            stat.isFinished = true;
         turtFinish();
 
         currentTick++;
@@ -80,28 +89,45 @@ namespace sw
     void Simulation::command(sw::io::SpawnSwordsman& sm)
     {
         spawnCommand(sm);
+        unitAI[sm.unitId] = std::make_unique<AI::AI_SpawnSwordsman>(gameField);
     }
 
     void Simulation::command(sw::io::SpawnHunter& h)
     {
         spawnCommand(h);
+        unitAI[h.unitId] = std::make_unique<AI::AI_SpawnHunter>(gameField);
     }
 
-    void turtStart()
+    void Simulation::turtStart()
     {
 
     }
 
-    bool turt()
+    bool Simulation::turn()
     {
         bool f_activityFound = false;
-
-
-
+        for (auto unitId : moveOrder)
+        {
+            bool f_unitActivity = turn(unitId);
+            if (f_unitActivity)
+                f_activityFound = true;
+        }
         return f_activityFound;
     }
 
-    void turtFinish()
+    bool Simulation::turn(uint32_t unitId)
+    {
+        auto& u = unitsHeap[unitId];
+        return turn(u);
+    }
+
+    bool Simulation::turn(sw::entities::Unit& u)
+    {
+        bool f_activity = unitAI[u.getId()]->tick(u);
+        return f_activity;
+    }
+
+    void Simulation::turtFinish()
     {
 
     }

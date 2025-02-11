@@ -25,8 +25,14 @@ namespace sw::entities
         return f_isCorrect;
     }
 
-    void Unit::markAsIncorrect()
+    std::string Unit::getIncorrectnessReason() const
+    {
+        return incorrectnessReason;
+    }
+
+    void Unit::markAsIncorrect(const std::string& reason)
     {
         f_isCorrect = true;
+        incorrectnessReason = reason;
     }
 }

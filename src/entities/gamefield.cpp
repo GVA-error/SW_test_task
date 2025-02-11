@@ -32,11 +32,11 @@ namespace sw::entities
         unitPaths.setUnitTarget(unitId, targetX, targetY);
     }
 
-    bool GameField::addUnit(sw::entities::Unit& unit, uint32_t x, uint32_t y, bool f_solid)
+    bool GameField::addUnit(sw::entities::Unit& unit, uint32_t x, uint32_t y)
     {
         auto id = unit.getId();
         utils::FieldPos pos({x, y});
-
+        auto f_solid = unit.is(UnitType::LAND_SOLID);
         if (f_solid)
         {
             if (landObstacle[pos])
