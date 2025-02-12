@@ -3,13 +3,13 @@
 
 namespace sw::mechanics
 {
-
     using namespace sw::entities;
-    bool tryToRandomRangeAttack(std::shared_ptr<sw::entities::GameField>& gf, sw::entities::Unit& u, UnitAttributes& DAMAGE_STAT, uint32_t& out_attackedUnit)
+    RangeAttackResult tryToRandomRangeAttack(std::shared_ptr<sw::entities::GameField>& gf, sw::entities::Unit& u,
+                            const UnitAttributes& DAMAGE_STAT)
     {
-        bool f_activity = false;
-        out_attackedUnit = UNDEFINED_UNIT_ID;
+        RangeAttackResult res;
 
-        return f_activity;
+
+        return res;
     }
 }

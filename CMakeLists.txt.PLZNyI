@@ -13,17 +13,13 @@ add_executable(sw_battle_test ${SOURCES}
     src/entities/Unit.h src/entities/Unit.cpp
     src/mechanics/Spawn.h src/mechanics/Spawn.cpp
     src/entities/UnitEnums.h
-    src/AI/AI_Swordsman.h src/AI/AI_Swordsman.cpp
+    src/AI/AI_Swordsman.h src/AI/ai_spawnswordsman.cpp
     src/AI/ai.h src/AI/ai.cpp
-    src/AI/AI_Hunter.h src/AI/AI_Hunter.cpp
+    src/AI/ai_spawnhunter.h src/AI/AI_Hunter.cpp
     src/utils/Coordinates.cpp
     src/mechanics/meleeattack.h src/mechanics/meleeattack.cpp
     src/mechanics/rangeattack.h src/mechanics/rangeattack.cpp
     src/mechanics/march.h src/mechanics/march.cpp
-    src/AI/primitives/pai_meleeattack.h src/AI/primitives/pai_meleeattack.cpp
-    src/AI/primitives/pai_march.h src/AI/primitives/pai_march.cpp
-    src/AI/primitives/pai_rangeattack.h src/AI/primitives/pai_rangeattack.cpp
-    src/AI/primitives/pai_defaultattacklog.h src/AI/primitives/pai_defaultattacklog.cpp
 
 
 

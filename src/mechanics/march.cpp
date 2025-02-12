@@ -4,12 +4,12 @@
 namespace sw::mechanics
 {
 
-    bool tryToNextStep(std::shared_ptr<sw::entities::GameField>& gf, sw::entities::Unit& u)
+    MarchResult tryToNextStep(std::shared_ptr<sw::entities::GameField>& gf, sw::entities::Unit& u)
     {
-        bool f_activity = false;
+        MarchResult res;
 
 
-        return f_activity;
+        return res;
     }
 
 }

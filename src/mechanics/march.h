@@ -9,9 +9,18 @@
 // Механики марша
 namespace sw::mechanics
 {
-    // Делаем следующий шаг к цели марша.
-    // Если юнит ждал или сделал шаг возвращает true
-    bool tryToNextStep(std::shared_ptr<sw::entities::GameField>&, sw::entities::Unit&);
+    using namespace sw::entities;
+
+    struct MarchResult
+    {
+        uint32_t newX         = utils::UNDEFINED_POSITION.x;
+        uint32_t newY         = utils::UNDEFINED_POSITION.y;
+        bool     f_marchEnded = false;
+        bool     f_activity   = false;
+    };
+
+    // Делаем следующий шаг на одну клетку к цели марша.
+    MarchResult tryToNextStep(std::shared_ptr<sw::entities::GameField>&, sw::entities::Unit&);
 }
 
 #endif // MARCH_H

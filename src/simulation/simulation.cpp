@@ -1,7 +1,7 @@
 #include "simulation.h"
 
-#include "AI/ai_spawnswordsman.h"
-#include "AI/ai_spawnhunter.h"
+#include "AI/AI_Swordsman.h"
+#include "AI/AI_Hunter.h"
 
 namespace sw
 {
@@ -89,13 +89,13 @@ namespace sw
     void Simulation::command(sw::io::SpawnSwordsman& sm)
     {
         spawnCommand(sm);
-        unitAI[sm.unitId] = std::make_unique<AI::AI_SpawnSwordsman>(gameField);
+        unitAI[sm.unitId] = std::make_unique<AI::AI_Swordsman>(gameField);
     }
 
     void Simulation::command(sw::io::SpawnHunter& h)
     {
         spawnCommand(h);
-        unitAI[h.unitId] = std::make_unique<AI::AI_SpawnHunter>(gameField);
+        unitAI[h.unitId] = std::make_unique<AI::AI_Hunter>(gameField);
     }
 
     void Simulation::turtStart()
@@ -123,7 +123,7 @@ namespace sw
 
     bool Simulation::turn(sw::entities::Unit& u)
     {
-        bool f_activity = unitAI[u.getId()]->tick(u);
+        bool f_activity = unitAI[u.getId()]->tick(u, currentTick);
         return f_activity;
     }
 

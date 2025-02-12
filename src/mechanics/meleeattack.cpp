@@ -3,12 +3,12 @@
 
 namespace sw::mechanics
 {
-    bool tryToRandomMeleeAttack(std::shared_ptr<GameField>&, Unit&, UnitAttributes& DAMAGE_STAT, uint32_t& out_attackedUnit)
+    MeleeAttackResult tryToRandomMeleeAttack(std::shared_ptr<GameField>& gf, Unit& u,
+                            const UnitAttributes& DAMAGE_STAT)
     {
-        bool f_activity = false;
-        out_attackedUnit = UNDEFINED_UNIT_ID;
+        MeleeAttackResult res;
 
 
-        return f_activity;
+        return res;
     }
 }

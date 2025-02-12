@@ -12,10 +12,12 @@ namespace sw::AI
     {
     public:
         virtual ~AI() {};
-        // Описывает был ли юнит активен в последний ход
+
+        // Описываем, что юнит делает во время хода
         // Возвращает был ли юнит активен во время хода
         // Ожидание считаем активностью
-        virtual bool tick(sw::entities::Unit&) = 0;
+        virtual bool tick(sw::entities::Unit&, uint32_t tickNumber) = 0;
+
     protected:
         std::shared_ptr<sw::entities::GameField> gf;
         sw::EventLog eventLog;

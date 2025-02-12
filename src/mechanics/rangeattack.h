@@ -13,12 +13,21 @@
 namespace sw::mechanics
 {
     using namespace sw::entities;
-    // Пробуем атаковать ближайшего юнита.
+
+    struct RangeAttackResult
+    {
+        uint32_t targetUnit   = UNDEFINED_UNIT_ID; // id юнита которого атаковали.
+        uint32_t damage       = 0;                 // размер полученного урона.
+        uint32_t targetHp     = 0;                 // сколько хп осталось у атакуемого
+        bool     f_unitDied   = false;             // юнит мёртв.
+        bool     f_activity   = false;             // была ли произведена атака.
+    };
+
+    // Пробуем атаковать случайного юнита в радиусе атаки.
     // DAMAGE_STAT - атрибут для просчёта урона
     // см. sw::entities::UnitAttributes
-    // Если никто не был атакован вернёт false
-    // out_attackedUnit - будет присвоен id юнита которого атаковали
-    bool tryToRandomRangeAttack(std::shared_ptr<sw::entities::GameField>&, sw::entities::Unit&, UnitAttributes& DAMAGE_STAT, uint32_t& out_attackedUnit);
+    RangeAttackResult tryToRandomRangeAttack(std::shared_ptr<sw::entities::GameField>&, sw::entities::Unit&,
+                                const UnitAttributes& DAMAGE_STAT);
 
 }
 

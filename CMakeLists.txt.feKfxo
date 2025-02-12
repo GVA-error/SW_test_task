@@ -20,10 +20,6 @@ add_executable(sw_battle_test ${SOURCES}
     src/mechanics/meleeattack.h src/mechanics/meleeattack.cpp
     src/mechanics/rangeattack.h src/mechanics/rangeattack.cpp
     src/mechanics/march.h src/mechanics/march.cpp
-    src/AI/primitives/pai_meleeattack.h src/AI/primitives/pai_meleeattack.cpp
-    src/AI/primitives/pai_march.h src/AI/primitives/pai_march.cpp
-    src/AI/primitives/pai_rangeattack.h src/AI/primitives/pai_rangeattack.cpp
-    src/AI/primitives/pai_defaultattacklog.h src/AI/primitives/pai_defaultattacklog.cpp
 
 
 
