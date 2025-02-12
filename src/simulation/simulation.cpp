@@ -123,7 +123,8 @@ namespace sw
 
     bool Simulation::turn(sw::entities::Unit& u)
     {
-        bool f_activity = unitAI[u.getId()]->tick(u, currentTick);
+        auto& AI = unitAI[u.getId()];
+        bool f_activity = AI->tick(u, currentTick);
         return f_activity;
     }
 

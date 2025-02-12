@@ -24,6 +24,7 @@ add_executable(sw_battle_test ${SOURCES}
     src/AI/primitives/pai_march.h src/AI/primitives/pai_march.cpp
     src/AI/primitives/pai_rangeattack.h src/AI/primitives/pai_rangeattack.cpp
     src/AI/primitives/pai_defaultattacklog.h src/AI/primitives/pai_defaultattacklog.cpp
+    src/mechanics/mechanicsresults.h src/mechanics/mechanicsresults.cpp
 
 
 

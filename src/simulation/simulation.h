@@ -52,20 +52,25 @@ namespace sw
         uint32_t currentTick = 0;
         sw::EventLog eventLog;
         std::shared_ptr<sw::entities::GameField> gameField;
+
         // очерёдность ходов
         std::list<uint32_t> moveOrder;
         std::map<uint32_t, sw::entities::Unit> unitsHeap;
+
         // искуственный интеллект юнита
         std::map<uint32_t, std::unique_ptr<AI::AI>> unitAI;
 
         // События начала хода
         void turtStart();
+
         // Исполнение механик хода юнитами.
         // Возвращает было ли совершено какое либо действие юнитами.
         bool turn();
+
         // .. юнитом
         bool turn(uint32_t unitId);
         bool turn(sw::entities::Unit&);
+
         // События конца хода
         void turtFinish();
 

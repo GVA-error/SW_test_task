@@ -8,7 +8,11 @@ namespace sw::mechanics
                             const UnitAttributes& DAMAGE_STAT)
     {
         RangeAttackResult res;
-
+        if (u.isAllowed(UnitMechanic::RANGE_ATTACK) == false)
+        {
+            res.f_isMechanicAllowed = false;
+            return res;
+        }
 
         return res;
     }

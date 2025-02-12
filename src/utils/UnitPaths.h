@@ -8,7 +8,7 @@
 
 namespace sw::utils
 {
-    // Класс для работы с путями юнитов.
+    // Класс для работы с путями передвижения юнитов.
     class UnitPaths
     {
     public:
@@ -20,7 +20,13 @@ namespace sw::utils
 
         // Передвигает юнита на новую позицию из возможных, на один шаг. Выбирает наиболее близкую к цели.
         // Дойдя до финальной точки, юнит остановится.
-        FieldPos step(uint32_t id, const std::map<FieldPos, bool>& landObstacle);
+        // unitPos - позиция которую меняем.
+        bool step(uint32_t id, const std::map<FieldPos, bool>& landObstacle,
+                  FieldPos& unitPos);
+        // Если юниту не важны препятствия
+        bool step(uint32_t id, FieldPos& unitPos);
+
+        bool haveTarget(uint32_t id) const;
 
     private:
         // По id возвращает позицию цели юнита

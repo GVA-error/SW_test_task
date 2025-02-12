@@ -2,7 +2,7 @@
 #define UNIT_H
 
 #include <cstdint>
-#include <map>
+#include <unordered_map>
 #include <string>
 
 #include "UnitEnums.h"
@@ -51,10 +51,10 @@ namespace sw::entities
         std::string incorrectnessReason;
 
         // Стат блок
-        std::map<UnitMechanic,   bool>    mechanic;
-        std::map<UnitAttributes, int32_t> attributes;
-        std::map<UnitState,      int32_t> status;
-        std::map<UnitType,       bool>    type;
+        std::unordered_map<UnitMechanic,   bool>    mechanic;
+        std::unordered_map<UnitAttributes, int32_t> attributes;
+        std::unordered_map<UnitState,      int32_t> status;
+        std::unordered_map<UnitType,       bool>    type;
 
     };
 

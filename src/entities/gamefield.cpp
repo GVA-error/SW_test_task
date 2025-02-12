@@ -3,7 +3,7 @@
 
 namespace sw::entities
 {
-
+    using namespace sw::utils;
     GameField::GameField(uint32_t w, uint32_t h)
     {
         width = w;
@@ -47,6 +47,56 @@ namespace sw::entities
         unitIsLandObstacle[id] = f_solid;
         unitsOnPosition[pos].insert(id);
         unitPosition[id] = pos;
+        return true;
     }
+
+
+    bool GameField::step(sw::entities::Unit& u)
+    {
+        auto id = u.getId();
+        auto& unitPos = unitPosition[id];
+
+        // Двигаем юнита
+        unitsOnPosition[unitPos].erase(id);
+        bool f_activity = unitPaths.step(id, landObstacle, unitPos);
+        unitsOnPosition[unitPos].insert(id);
+
+        return f_activity;
+    }
+
+    void GameField::kill(uint32_t unitId)
+    {
+        deadSet.insert(unitId);
+        if (unitIsLandObstacle[unitId])
+        {
+            const auto& unitPos = unitPosition[unitId];
+            landObstacle[unitPos] = false;
+            unitIsLandObstacle[unitId] = false;
+        }
+    }
+
+    bool GameField::onMarch(const sw::entities::Unit& u) const
+    {
+        return unitPaths.haveTarget(u.getId());
+    }
+
+
+    std::list<uint32_t> GameField::getUnitsInRadius(const FieldPos& p, uint32_t radius) const
+    {
+        std::list<uint32_t> res;
+        assert(false);
+        return res;
+    }
+
+    uint32_t GameField::deadSetSize() const
+    {
+        return deadSet.size();
+    }
+
+    void GameField::eraseDeadUnits()
+    {
+        assert(false);
+    }
+
 
 }
