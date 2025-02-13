@@ -3,6 +3,7 @@
 
 #include <cstdint>
 #include <map>
+#include <set>
 
 #include "utils/Coordinates.h"
 
@@ -21,7 +22,7 @@ namespace sw::utils
         // Передвигает юнита на новую позицию из возможных, на один шаг. Выбирает наиболее близкую к цели.
         // Дойдя до финальной точки, юнит остановится.
         // unitPos - позиция которую меняем.
-        bool step(uint32_t id, const std::map<FieldPos, bool>& landObstacle,
+        bool step(uint32_t id, const std::set<FieldPos>& landObstacle,
                   FieldPos& unitPos);
         // Если юниту не важны препятствия
         bool step(uint32_t id, FieldPos& unitPos);
@@ -31,6 +32,7 @@ namespace sw::utils
     private:
         // По id возвращает позицию цели юнита
         std::map<uint32_t, FieldPos> target;
+
     };
 }
 

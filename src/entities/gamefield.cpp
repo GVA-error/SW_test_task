@@ -1,8 +1,8 @@
 #include "gamefield.h"
 
-
 namespace sw::entities
 {
+    using namespace std;
     using namespace sw::utils;
     GameField::GameField(uint32_t w, uint32_t h)
     {
@@ -18,6 +18,11 @@ namespace sw::entities
     uint32_t GameField::getHeight() const
     {
         return height;
+    }
+
+    FieldPos GameField::getUnitPosition(const sw::entities::Unit& u) const
+    {
+        return getUnitPosition(u.getId());
     }
 
     sw::utils::FieldPos GameField::getUnitPosition(uint32_t unitId) const
@@ -39,9 +44,9 @@ namespace sw::entities
         auto f_solid = unit.is(UnitType::LAND_SOLID);
         if (f_solid)
         {
-            if (landObstacle[pos])
+            if (landObstacle.find(pos) != landObstacle.end())
                 return false;
-            landObstacle[pos] = true;
+            landObstacle.insert(pos);
         }
 
         unitIsLandObstacle[id] = f_solid;
@@ -57,9 +62,12 @@ namespace sw::entities
         auto& unitPos = unitPosition[id];
 
         // Двигаем юнита
+        if (unitIsLandObstacle[id])
+            landObstacle.erase(unitPos);
         unitsOnPosition[unitPos].erase(id);
         bool f_activity = unitPaths.step(id, landObstacle, unitPos);
         unitsOnPosition[unitPos].insert(id);
+        landObstacle.insert(unitPos);
 
         return f_activity;
     }
@@ -70,7 +78,7 @@ namespace sw::entities
         if (unitIsLandObstacle[unitId])
         {
             const auto& unitPos = unitPosition[unitId];
-            landObstacle[unitPos] = false;
+            landObstacle.erase(unitPos);
             unitIsLandObstacle[unitId] = false;
         }
     }
@@ -98,5 +106,9 @@ namespace sw::entities
         assert(false);
     }
 
+    void deleteUnit(uint32_t unitId)
+    {
+        assert(false);
+    }
 
 }

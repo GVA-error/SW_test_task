@@ -49,7 +49,7 @@ namespace sw::mechanics
         if (unit.isCorrect() == false)
             return unit;
         unit.set(UnitMechanic::MOVE);
-        unit.set(UnitState::HP, u.hp);
+        unit.set(UnitStatus::HP, u.hp);
         return unit;
     }
 

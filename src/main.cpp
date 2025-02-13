@@ -20,6 +20,7 @@
 int main(int argc, char** argv)
 {
 	using namespace sw;
+    //std::srand(std::time({})); // Для не детерминированности.
 
 	/*if (argc != 2)
 	{

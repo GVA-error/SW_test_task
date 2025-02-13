@@ -12,8 +12,10 @@ namespace sw::mechanics
             res.f_isMechanicAllowed = false;
             return res;
         }
-
-
+        res.f_activity = gf->step(u);
+        auto pos = gf->getUnitPosition(u);
+        res.newX = pos.x;
+        res.newY = pos.y;
         return res;
     }
 

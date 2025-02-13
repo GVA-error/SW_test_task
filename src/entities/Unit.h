@@ -9,7 +9,7 @@
 
 namespace sw::entities
 {
-    // Описывает поведение юнита.
+    // Описывает юнита.
     // То какие механики он может применять, его характеристики, временные состояния и т. д.
     // Для создания используeм sw::mechanics::Spawn()
     class Unit
@@ -17,22 +17,22 @@ namespace sw::entities
     public:
         Unit(){};
         // id - уникальный идинтификатор юнита
-        // typeName - служит в целях дебага
-        Unit(uint32_t id, const std::string& typeName = "defaultUnit");
+        // name - служит в целях более удобного дебага
+        Unit(uint32_t id, const std::string& name = "defaultUnit");
 
         const uint32_t    getId() const;
-        const std::string getTypeName() const;
+        const std::string getName() const;
 
         // Геттеры статблока
         bool isAllowed(const UnitMechanic&) const;
         int32_t getAttribute(const UnitAttributes&) const;
-        int32_t getState(const UnitState&) const;
+        int32_t getState(const UnitStatus&) const;
         int32_t is(const UnitType&) const;
 
         // Обновляет значения стат блока
         void set(const UnitMechanic&, bool f = true);
-        void set(const UnitAttributes&, int32_t);
-        void set(const UnitState&, int32_t);
+        void set(const UnitAttributes&, int32_t value);
+        void set(const UnitStatus&, int32_t value);
         void set(const UnitType&);
 
         // дебаг информация о юните
@@ -42,7 +42,7 @@ namespace sw::entities
 
     private:
         // typeName используется для более простого дебага
-        std::string typeName;
+        std::string name;
         uint32_t id;
 
         // Был ли юнит создан корректно, не было ли иных ошибок.
@@ -53,7 +53,7 @@ namespace sw::entities
         // Стат блок
         std::unordered_map<UnitMechanic,   bool>    mechanic;
         std::unordered_map<UnitAttributes, int32_t> attributes;
-        std::unordered_map<UnitState,      int32_t> status;
+        std::unordered_map<UnitStatus,     int32_t> status;
         std::unordered_map<UnitType,       bool>    type;
 
     };

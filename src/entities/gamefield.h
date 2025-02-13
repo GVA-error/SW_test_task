@@ -63,6 +63,7 @@ namespace sw::entities
         uint32_t getWidth()  const;
         uint32_t getHeight() const;
 
+        FieldPos getUnitPosition(const sw::entities::Unit&) const;
         FieldPos getUnitPosition(uint32_t unitId) const;
 
     private:
@@ -84,7 +85,7 @@ namespace sw::entities
         std::unordered_map<uint32_t, bool> unitIsLandObstacle;
 
         // Есть ли на клетке юнит, мешающий пройти по земле
-        std::map<FieldPos, bool> landObstacle;
+        std::set<FieldPos> landObstacle;
 
         // Просчитывает пути, давая следующую точку для шага
         sw::utils::UnitPaths unitPaths;

@@ -10,7 +10,7 @@ namespace sw::mechanics
 {
     using namespace sw::entities;
 
-    //
+    // Минимальный результат атаки для функционирования механик.
     struct BaseResult
     {
         bool     f_activity          = false;      // механика была воспроизведена.
@@ -26,7 +26,7 @@ namespace sw::mechanics
         bool     f_unitDied   = false;             // юнит мёртв.
     };
 
-    // Достаточное для логирования
+    // Достаточное для логирования описание шага марша.
     struct MarchResult : BaseResult
     {
         uint32_t newX         = utils::UNDEFINED_POSITION.x; // нова х - позиция

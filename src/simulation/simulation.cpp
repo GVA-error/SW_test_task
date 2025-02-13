@@ -25,6 +25,8 @@ namespace sw
             stat.isFinished = true;
         turtFinish();
 
+        sleep(1);
+
         currentTick++;
         return stat;
     }
@@ -78,7 +80,7 @@ namespace sw
 
         if (f_outOfMap)
         {
-            eventLog.log(currentTick, sw::io::Error("Simulation::March incorrect position."));
+            eventLog.log(currentTick, sw::io::Error("Simulation::March incorrect position. Target is out of map."));
             return;
         }
 

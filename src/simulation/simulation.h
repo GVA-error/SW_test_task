@@ -1,6 +1,7 @@
 #ifndef SIMULATION_H
 #define SIMULATION_H
 
+#include <unistd.h>
 #include <cstdint>
 #include <memory>
 #include <IO/Commands/CreateMap.hpp>

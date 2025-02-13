@@ -4,48 +4,44 @@
 #include <cstdint>
 #include <cmath>
 #include <functional>
+#include <list>
 
 namespace sw::utils
 {
     // Определяем систему координат в зависимости от выбранного типа точек
 
-    // Возможность ходить по диагонали
-    struct XY_vert
+    // Базовая структура для возможности использования в *map и *set
+    struct MappableCoordinate
     {
         uint32_t x;
         uint32_t y;
 
-        // Для мапов и сетов.
-        bool operator==(const XY_vert& other) const {
+        bool operator==(const MappableCoordinate& other) const {
             return x == other.x && y == other.y;
         }
+        bool operator<(const MappableCoordinate& other) const {
+            if (x == other.x)
+                return y < other.y;
+            return x < other.x;
+        }
+    };
+
+    // Возможность ходить по диагонали
+    struct XY_vert : MappableCoordinate
+    {
     };
 
     // Возможность ходить только по одной оси одновременно
     // Предпологается манхэттенская норма
-    struct XY_manh
+    struct XY_manh : MappableCoordinate
     {
-        uint32_t x;
-        uint32_t y;
-
-        // Для мапов и сетов.
-        bool operator==(const XY_manh& other) const {
-            return x == other.x && y == other.y;
-        }
     };
 
-    // Возможность ходить по диагонали
+    // Возможность ходить по диагонали, но с координатой z
     // Требуется для механики летающих юнитов
-    struct XYZ_vert
+    struct XYZ_vert : MappableCoordinate
     {
-        uint32_t x;
-        uint32_t y;
         uint32_t z = 0;
-
-        // Для мапов и сетов.
-        bool operator==(const XYZ_vert& other) const {
-            return x == other.x && y == other.y && z == other.z;
-        }
     };
 
     // манхетанская норма
@@ -57,19 +53,32 @@ namespace sw::utils
 
     typedef XY_vert FieldPos;
     const FieldPos UNDEFINED_POSITION = { UINT32_MAX, UINT32_MAX };
+
+    // Доступные позиции для движения из точки
+    // n n n
+    // n p n
+    // n n n
+    std::list<XY_vert>  getAllowedMovePosition(const XY_vert&);
+    std::list<XYZ_vert> getAllowedMovePosition(const XYZ_vert&);
+    //   n
+    // n p n
+    //   n
+    std::list<XY_manh>  getAllowedMovePosition(const XY_manh&);
 }
 
 // Хеш функции для мапов и сетов
 namespace std {
+    using namespace sw::utils;
     template <>
-    struct hash<sw::utils::FieldPos> {
-        size_t operator()(const sw::utils::FieldPos& p) const {
+    struct hash<FieldPos> {
+        size_t operator()(const FieldPos& p) const {
             size_t h1 = hash<int>{}(p.x);
             size_t h2 = hash<int>{}(p.y);
             // Комбинируем хеши
             return h1 ^ (h2 << 1);
         }
     };
+
 }
 
 
