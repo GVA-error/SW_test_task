@@ -81,7 +81,7 @@ namespace sw
         // Обобщённое поведение создания юнита
         // Создаёт как самого юнита, так и соответствующие бекэнды
         // Добавляет его в очередь хода.
-        template <typename TCommand>
+        template <class UnitAI, typename TCommand>
         void spawnCommand(TCommand& command)
         {
             if (unitsHeap->contains(command.unitId))
@@ -98,6 +98,14 @@ namespace sw
             }
             moveOrder.push_back(unit.getId());
             unitsHeap->addUnit(unit);
+            setUnitAI<UnitAI>(unit.getId());
+        }
+
+        // Устанавливаем AI для юнита
+        template <class UnitAI>
+        void setUnitAI(uint32_t unitId)
+        {
+            unitAI[unitId] = std::make_unique<UnitAI>(gameField, unitsHeap);
         }
     };
 }

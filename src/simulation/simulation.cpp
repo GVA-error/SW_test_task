@@ -90,14 +90,12 @@ namespace sw
 
     void Simulation::command(sw::io::SpawnSwordsman& sm)
     {
-        spawnCommand(sm);
-        unitAI[sm.unitId] = std::make_unique<AI::AI_Swordsman>(gameField, unitsHeap);
+        spawnCommand<AI::AI_Swordsman>(sm);
     }
 
     void Simulation::command(sw::io::SpawnHunter& h)
     {
-        spawnCommand(h);
-        unitAI[h.unitId] = std::make_unique<AI::AI_Hunter>(gameField, unitsHeap);
+        spawnCommand<AI::AI_Hunter>(h);
     }
 
     void Simulation::turtStart()
