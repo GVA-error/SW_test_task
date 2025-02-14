@@ -44,14 +44,16 @@ namespace sw::utils
         uint32_t z = 0;
     };
 
+    typedef XY_vert FieldPos;
+
     // манхетанская норма
     uint32_t distance(const XY_manh& a, const XY_manh& b);
     // если разрешено двигатся по диагонали
     uint32_t distance(const XY_vert& a, const XY_vert& b);
     // если разрешено двигатся по диагонали
     uint32_t distance(const XYZ_vert& a, const XYZ_vert& b);
+    uint32_t distance(const FieldPos& a, uint32_t x, uint32_t y);
 
-    typedef XY_vert FieldPos;
     const FieldPos UNDEFINED_POSITION = { UINT32_MAX, UINT32_MAX };
 
     // Доступные позиции для движения из точки

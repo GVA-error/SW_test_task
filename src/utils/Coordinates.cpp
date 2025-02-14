@@ -18,7 +18,15 @@ namespace sw::utils
                                                               + abs(int32_t(a.z) - int32_t(b.z)));
     }
 
-    std::list<XY_vert>  getAllowedMovePosition(const XY_vert& p)
+    uint32_t distance(const FieldPos& a, uint32_t x, uint32_t y)
+    {
+        FieldPos b;
+        b.x = x;
+        b.y = y;
+        return distance(a, b);
+    }
+
+    std::list<XY_vert> getAllowedMovePosition(const XY_vert& p)
     {
         std::list<XY_vert> res;
         XY_vert neighbor;

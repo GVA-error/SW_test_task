@@ -20,6 +20,7 @@
 
 #include "entities/gamefield.h"
 #include "mechanics/Spawn.h"
+#include "entities/unitsheap.h"
 #include "AI/ai.h"
 
 namespace sw
@@ -52,11 +53,13 @@ namespace sw
     private:
         uint32_t currentTick = 0;
         sw::EventLog eventLog;
-        std::shared_ptr<sw::entities::GameField> gameField;
 
         // очерёдность ходов
         std::list<uint32_t> moveOrder;
-        std::map<uint32_t, sw::entities::Unit> unitsHeap;
+
+        // юниты и куча используються AI
+        std::shared_ptr<entities::UnitHeap>  unitsHeap;
+        std::shared_ptr<entities::GameField> gameField;
 
         // искуственный интеллект юнита
         std::map<uint32_t, std::unique_ptr<AI::AI>> unitAI;
@@ -81,7 +84,7 @@ namespace sw
         template <typename TCommand>
         void spawnCommand(TCommand& command)
         {
-            if (unitsHeap.find(command.unitId) != unitsHeap.end())
+            if (unitsHeap->contains(command.unitId))
             {
                 eventLog.log(currentTick, sw::io::Error("Simulation::spawnCommand trying to recreate unit with same id."));
                 return;
@@ -94,7 +97,7 @@ namespace sw
                 return;
             }
             moveOrder.push_back(unit.getId());
-            unitsHeap[unit.getId()] = unit;
+            unitsHeap->addUnit(unit);
         }
     };
 }

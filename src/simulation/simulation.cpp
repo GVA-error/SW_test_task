@@ -8,7 +8,7 @@ namespace sw
 
     Simulation::Simulation()
     {
-
+        unitsHeap = std::make_shared<entities::UnitHeap>();
     }
 
     Simulation::SimulationStatus Simulation::tick()
@@ -91,13 +91,13 @@ namespace sw
     void Simulation::command(sw::io::SpawnSwordsman& sm)
     {
         spawnCommand(sm);
-        unitAI[sm.unitId] = std::make_unique<AI::AI_Swordsman>(gameField);
+        unitAI[sm.unitId] = std::make_unique<AI::AI_Swordsman>(gameField, unitsHeap);
     }
 
     void Simulation::command(sw::io::SpawnHunter& h)
     {
         spawnCommand(h);
-        unitAI[h.unitId] = std::make_unique<AI::AI_Hunter>(gameField);
+        unitAI[h.unitId] = std::make_unique<AI::AI_Hunter>(gameField, unitsHeap);
     }
 
     void Simulation::turtStart()
@@ -119,7 +119,7 @@ namespace sw
 
     bool Simulation::turn(uint32_t unitId)
     {
-        auto& u = unitsHeap[unitId];
+        auto& u = unitsHeap->unitById(unitId);
         return turn(u);
     }
 

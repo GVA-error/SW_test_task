@@ -35,6 +35,13 @@ namespace sw::entities
         void set(const UnitStatus&, int32_t value);
         void set(const UnitType&);
 
+        // Контекстные геттеры
+        bool isDead() const;
+        int32_t getCurrentHP() const;
+
+        // Контекстные сеттеры
+        void takeDamage(int32_t damageHpImpact);
+
         // дебаг информация о юните
         bool isCorrect() const;
         std::string getIncorrectnessReason() const;

@@ -76,4 +76,25 @@ namespace sw::entities
         type[t] = true;
     }
 
+    // Контекстные геттеры
+    bool Unit::isDead() const
+    {
+        return getCurrentHP() == 0;
+    }
+
+    int32_t Unit::getCurrentHP() const
+    {
+        return status.at(UnitStatus::HP);
+    }
+
+    // Контекстные сеттеры
+    void Unit::takeDamage(int32_t damageHpImpact)
+    {
+        auto curHp = getCurrentHP();
+        if (curHp <= damageHpImpact)
+            set(UnitStatus::HP, 0);
+        else
+            set(UnitStatus::HP, curHp-damageHpImpact);
+    }
+
 }

@@ -65,7 +65,9 @@ namespace sw::entities
         if (unitIsLandObstacle[id])
             landObstacle.erase(unitPos);
         unitsOnPosition[unitPos].erase(id);
-        bool f_activity = unitPaths.step(id, landObstacle, unitPos);
+        if (unitsOnPosition[unitPos].size() == 0) // Чтобы от шагов не росло потребление памяти.
+            unitsOnPosition.erase(unitPos);
+        bool f_activity = unitPaths.step(id, landObstacle, unitPos, width, height);
         unitsOnPosition[unitPos].insert(id);
         landObstacle.insert(unitPos);
 
@@ -83,17 +85,79 @@ namespace sw::entities
         }
     }
 
+    bool GameField::isDead(uint32_t unitId) const
+    {
+        return deadSet.find(unitId) != deadSet.end();
+    }
+
     bool GameField::onMarch(const sw::entities::Unit& u) const
     {
         return unitPaths.haveTarget(u.getId());
     }
 
+    std::list<uint32_t> GameField::getUnitsInRadius(const Unit& u, uint32_t radius, bool f_liveOnly) const
+    {
+        return getUnitsInRadius(u.getId(), radius, f_liveOnly);
+    }
 
-    std::list<uint32_t> GameField::getUnitsInRadius(const FieldPos& p, uint32_t radius) const
+    std::list<uint32_t> GameField::getUnitsInRadius(uint32_t unitId, uint32_t radius, bool f_liveOnly) const
+    {
+        return getUnitsInRadius(getUnitPosition(unitId), radius, f_liveOnly);
+    }
+
+    uint32_t GameField::findRandomLiveUnitInPos(uint32_t x, uint32_t y) const
+    {
+        FieldPos p;
+        p.x = x;
+        p.y = y;
+        if (unitsOnPosition.find(p) == unitsOnPosition.end())
+            return UNDEFINED_UNIT_ID;
+        int32_t unitsNumber = unitsOnPosition.at(p).size();
+        if (unitsNumber == 0)
+            return UNDEFINED_UNIT_ID;
+        // берём случайного
+        auto c = utils::randomChoice(unitsOnPosition.at(p));
+        // Если он мёртв, то просто ищем первого живого
+        if (isDead(c))
+        {
+            c = UNDEFINED_UNIT_ID;
+            for (auto unitId : unitsOnPosition.at(p))
+                if (isDead(unitId) == false)
+                    return unitId;
+        }
+        return c;
+    }
+
+    std::list<uint32_t> GameField::getUnitsInRadius(const FieldPos& p, uint32_t radius, bool f_liveOnly) const
     {
         std::list<uint32_t> res;
-        assert(false);
+        for (int32_t x = p.x-radius; x<=p.x+radius; x++)
+            for (int32_t y = p.y-radius; y<=p.y+radius; y++)
+            {
+                if (x < 0 || y < 0)
+                    continue;
+                if (x == p.x && y == p.y)
+                    continue;
+                auto distanceValue = utils::distance(p, x, y);
+                if (distanceValue <= radius)
+                {
+                    auto randomUnitId = findRandomLiveUnitInPos(x, y);
+                    if (randomUnitId == UNDEFINED_UNIT_ID)
+                        continue;
+                    res.push_back(randomUnitId);
+                }
+            }
         return res;
+    }
+
+    uint32_t GameField::getRandomUnitInRadius(const Unit& u, uint32_t radius, bool f_liveOnly) const
+    {
+        auto candidates = getUnitsInRadius(u, radius, f_liveOnly);
+        if (candidates.size() == 0)
+            return UNDEFINED_UNIT_ID;
+
+        // берём случайного
+        return utils::randomChoice(candidates);
     }
 
     uint32_t GameField::deadSetSize() const

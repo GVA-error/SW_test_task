@@ -23,9 +23,9 @@ namespace sw::utils
         // Дойдя до финальной точки, юнит остановится.
         // unitPos - позиция которую меняем.
         bool step(uint32_t id, const std::set<FieldPos>& landObstacle,
-                  FieldPos& unitPos);
+                  FieldPos& unitPos, uint32_t fieldWidth, uint32_t fieldHeight);
         // Если юниту не важны препятствия
-        bool step(uint32_t id, FieldPos& unitPos);
+        bool step(uint32_t id, FieldPos& unitPos, uint32_t fieldWidth, uint32_t fieldHeight);
 
         bool haveTarget(uint32_t id) const;
 

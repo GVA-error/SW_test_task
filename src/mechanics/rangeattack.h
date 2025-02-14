@@ -7,6 +7,7 @@
 #include "entities/gamefield.h"
 #include "entities/Unit.h"
 #include "entities/UnitEnums.h"
+#include "entities/unitsheap.h"
 #include "mechanics/mechanicsresults.h"
 
 // Механики обеспечивающие дальний бой
@@ -22,8 +23,8 @@ namespace sw::mechanics
     // Пробуем атаковать случайного юнита в радиусе атаки.
     // DAMAGE_STAT - атрибут для просчёта урона
     // см. sw::entities::UnitAttributes
-    RangeAttackResult tryToRandomRangeAttack(std::shared_ptr<sw::entities::GameField>&, sw::entities::Unit&,
-                                const UnitAttributes& DAMAGE_STAT);
+    RangeAttackResult tryToRandomRangeAttack(std::shared_ptr<sw::entities::GameField>&, std::shared_ptr<UnitHeap>&,
+                                             sw::entities::Unit&, const UnitAttributes& DAMAGE_STAT);
 
 }
 

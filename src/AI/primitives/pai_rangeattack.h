@@ -4,17 +4,18 @@
 #include <memory>
 
 #include "IO/System/EventLog.hpp"
+#include "IO/System/EventLog.hpp"
 #include "entities/gamefield.h"
 #include "entities/Unit.h"
-#include "IO/System/EventLog.hpp"
 #include "entities/UnitEnums.h"
+#include "entities/unitsheap.h"
 
 // Описывем как АИ использует механики дальнего боя.
 namespace sw::AI::primitive
 {
     using namespace sw::entities;
-    bool pAI_tryToRangeAttack(std::shared_ptr<GameField>& gf, Unit& u,
-                              uint32_t tickNumber, sw::EventLog& eventLog, UnitAttributes DAMAGE_STAT);
+    bool pAI_tryToRangeAttack(std::shared_ptr<GameField>&, std::shared_ptr<UnitHeap>&, Unit&,
+                              uint32_t tickNumber, sw::EventLog&, UnitAttributes DAMAGE_STAT);
 
 
 }

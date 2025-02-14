@@ -13,6 +13,7 @@
 
 #include "utils/Coordinates.h"
 #include "utils/UnitPaths.h"
+#include "utils/randomfuncs.h"
 #include "entities/Unit.h"
 
 namespace sw::entities
@@ -28,12 +29,12 @@ namespace sw::entities
     {
     public:
         GameField() = delete;
-        GameField(uint32_t w, uint32_t h);
+        GameField(uint32_t width, uint32_t height);
 
         // Добавляет бекенд для юнита
         bool addUnit(sw::entities::Unit&, uint32_t x, uint32_t y);
 
-        // Обновляет позицию юнита. При коллизии юнит не меняет позию, а ждёт.
+        // Обновляет позицию юнита. При коллизии юнит ищет обход через клетку на таком же расстоянии от цели марша.
         // Для более простого решения коллизий быстрых юнитов, всегда двигаемся на один шаг.
         // Пример: если юнит обладает скоростью 5, то step() должна быть вызвана 5 раз за ход.
         // Если юнит двигался или ждал, возвращает true.
@@ -42,16 +43,23 @@ namespace sw::entities
         // Обозначаем юнита как мёртвого. Теперь он не куда не пойдёт.
         // Но будет препядствием пока не будет вызвана eraseDeadUnits
         void kill(uint32_t unitId);
+        bool isDead(uint32_t unitId) const;
 
-        // Обновляет Позицию в которую стремится юнит.
+        // Обновляет Позицию в которую стремиться юнит.
         // исходит от command::March
         void March(uint32_t unitId, uint32_t targetX, uint32_t targetY);
 
-        // Двигается ли юнит куда либо
+        // Стремиться ли юнит куда либо
         bool onMarch(const sw::entities::Unit&) const;
 
-        // Возвращает id всех юнитов в квадрате со стороной 2*radius+1 и центром в точке поля
-        std::list<uint32_t> getUnitsInRadius(const FieldPos&, uint32_t radius) const;
+        // Возвращает id всех юнитов в Coordinates::distance(radius) и центром в точке поля
+        // f_liveOnly - ищем только живых
+        std::list<uint32_t> getUnitsInRadius(const FieldPos&, uint32_t radius, bool f_liveOnly=true) const;
+        // .. с центром в позиции юнита
+        std::list<uint32_t> getUnitsInRadius(const Unit& u, uint32_t radius, bool f_liveOnly=true) const;
+        std::list<uint32_t> getUnitsInRadius(uint32_t unitId, uint32_t radius, bool f_liveOnly=true) const;
+        // .. вернёт случайного юнита в радиусе
+        uint32_t getRandomUnitInRadius(const Unit& u, uint32_t radius, bool f_liveOnly=true) const;
 
         // Сколько юнитов мертвы.
         uint32_t deadSetSize() const;
@@ -91,6 +99,7 @@ namespace sw::entities
         sw::utils::UnitPaths unitPaths;
 
         void deleteUnit(uint32_t unitId);
+        uint32_t findRandomLiveUnitInPos(uint32_t x, uint32_t y) const;
     };
 }
 
