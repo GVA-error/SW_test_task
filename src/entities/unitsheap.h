@@ -14,12 +14,12 @@ namespace sw::entities
     class UnitHeap
     {
     public:
-        void  addUnit(Unit&&);
-        void  addUnit(uint32_t unitId, const std::string& name);
+        void  add(Unit&&);
+        void  add(uint32_t unitId, const std::string& name);
         Unit& unitById(uint32_t unitId);
         bool  contains(uint32_t unitId) const;
-        void  eraseUnit(uint32_t unitId);
-        void  eraseUnit(const std::unordered_set<uint32_t>& unitId);
+        void  erase(uint32_t unitId);
+        void  erase(const std::unordered_set<uint32_t>& unitId);
 
         // Проверка корректно ли были удалены все мёртвые юниты.
         bool  isContainsDead() const;

@@ -10,6 +10,7 @@ namespace sw
     {
         unitsHeap = std::make_shared<entities::UnitHeap>();
         moveOrder = std::make_shared<entities::MoveOrder>();
+        turnPreparationAI = std::make_shared<AI::AI_OrderPraparation>(unitsHeap, moveOrder);
     }
 
     Simulation::SimulationStatus Simulation::tick()
@@ -18,13 +19,13 @@ namespace sw
         stat.isFinished = false;
         stat.tick = currentTick;
 
-        turtStart();
+        turnPreparationAI->orderPreparation(gameField);
         bool isActivityFound = turn();
         if (isActivityFound)
             stat.isFinished = false;
         else
             stat.isFinished = true;
-        turtFinish();
+        turnPreparationAI->orderPostHandle(gameField);
 
         sleep(1);
 
@@ -97,16 +98,6 @@ namespace sw
     void Simulation::command(sw::io::SpawnHunter& h)
     {
         spawnCommand<AI::AI_Hunter>(h);
-    }
-
-    void Simulation::turtStart()
-    {
-        // Убираем физическое претставление
-        auto deadSet = gameField->getDeadSet();
-        moveOrder->erase(deadSet);
-        unitsHeap->eraseUnit(deadSet);
-        gameField->eraseDeadUnits();
-        assert(unitsHeap->isContainsDead() == false);
     }
 
     bool Simulation::turn()

@@ -7,14 +7,14 @@ namespace sw::entities
 
     }
 
-    void UnitHeap::addUnit(Unit&& u)
+    void UnitHeap::add(Unit&& u)
     {
         heap[u.getId()] = std::move(u);
     }
 
-    void UnitHeap::addUnit(uint32_t unitId, const std::string& name)
+    void UnitHeap::add(uint32_t unitId, const std::string& name)
     {
-        addUnit(Unit(unitId, name));
+        add(Unit(unitId, name));
     }
 
     Unit& UnitHeap::unitById(uint32_t unitId)
@@ -27,15 +27,15 @@ namespace sw::entities
         return heap.find(unitId) != heap.end();
     }
 
-    void UnitHeap::eraseUnit(uint32_t unitId)
+    void UnitHeap::erase(uint32_t unitId)
     {
         heap.erase(unitId);
     }
 
-    void UnitHeap::eraseUnit(const std::unordered_set<uint32_t>& unitIds)
+    void UnitHeap::erase(const std::unordered_set<uint32_t>& unitIds)
     {
         for (auto unitId : unitIds)
-            eraseUnit(unitId);
+            erase(unitId);
     }
 
     bool UnitHeap::isContainsDead() const

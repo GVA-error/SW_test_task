@@ -29,6 +29,7 @@ add_executable(sw_battle_test ${SOURCES}
     src/mechanics/attack.h src/mechanics/attack.cpp
     src/utils/randomfuncs.h src/utils/randomfuncs.cpp
     src/utils/MoveOrder.h src/utils/MoveOrder.cpp
+    src/AI/AI_OrderPreparation.h src/AI/AI_OrderPreparation.cpp
 
 
 

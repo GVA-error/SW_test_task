@@ -23,6 +23,7 @@
 #include "utils/MoveOrder.h"
 #include "mechanics/Spawn.h"
 #include "AI/ai.h"
+#include "AI/AI_OrderPreparation.h"
 
 namespace sw
 {
@@ -62,9 +63,8 @@ namespace sw
 
         // искуственный интеллект юнита
         std::map<uint32_t, std::unique_ptr<AI::AI>> unitAI;
-
-        // События начала хода
-        void turtStart();
+        // Очистка поля от тел и прочие подготовки
+        std::shared_ptr<AI::AI_OrderPraparation> turnPreparationAI;
 
         // Исполнение механик хода юнитами.
         // Возвращает было ли совершено какое либо действие юнитами.

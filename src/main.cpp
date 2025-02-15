@@ -29,6 +29,8 @@
  * - pai_defaultAttackLog -> pAI_AttackLog
  * - pAI_MarchLog
  * - Описание классов с точки зрения банды 4?
+ * - AI_Spawner
+ * - orderPreparationAI->turnPreparationAI
  *
  * Тесты
  * - юнит с тем же id
@@ -75,6 +77,7 @@ int main(int argc, char** argv)
         if (status.isFinished)
             break;
     }
+
 
     /*
 

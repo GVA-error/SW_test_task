@@ -34,14 +34,14 @@ namespace sw::mechanics
             res.incorrectnessReason = "Can not spawn unit without field";
             return res;
         }
-        uh->addUnit(u.unitId, name);
+        uh->add(u.unitId, name);
         auto& unit = uh->unitById(u.unitId);
         unit.set(UnitType::LAND_SOLID);
         auto f_success = gf->addUnit(unit, u.x, u.y);
         if (f_success == false)
         {
             res.incorrectnessReason = "can not add unit in this coordinates";
-            uh->eraseUnit(u.unitId);
+            uh->erase(u.unitId);
             return res;
         }
         res.f_isCorrect = true;
