@@ -22,8 +22,8 @@
 #include "entities/unitsheap.h"
 #include "utils/MoveOrder.h"
 #include "mechanics/Spawn.h"
-#include "AI/ai.h"
 #include "AI/AI_OrderPreparation.h"
+#include "AI/ai_TurnMaster.h"
 
 namespace sw
 {
@@ -61,21 +61,10 @@ namespace sw
         std::shared_ptr<entities::GameField> gameField;
         std::shared_ptr<entities::MoveOrder> moveOrder;
 
-        // искуственный интеллект юнита
-        std::map<uint32_t, std::unique_ptr<AI::AI>> unitAI;
         // Очистка поля от тел и прочие подготовки
         std::shared_ptr<AI::AI_OrderPraparation> turnPreparationAI;
+        std::shared_ptr<AI::AI_TurnMaster>       turnMasterAI;
 
-        // Исполнение механик хода юнитами.
-        // Возвращает было ли совершено какое либо действие юнитами.
-        bool turn();
-
-        // .. юнитом
-        bool turn(uint32_t unitId);
-        bool turn(sw::entities::Unit&);
-
-        // События конца хода
-        void turtFinish();
 
         // Обобщённое поведение создания юнита
         // Создаёт как самого юнита, так и соответствующие бекэнды
@@ -97,14 +86,7 @@ namespace sw
                 return;
             }
             moveOrder->push(command.unitId);
-            setUnitAI<UnitAI>(command.unitId);
-        }
-
-        // Устанавливаем AI для юнита
-        template <class UnitAI>
-        void setUnitAI(uint32_t unitId)
-        {
-            unitAI[unitId] = std::make_unique<UnitAI>(gameField, unitsHeap);
+            turnMasterAI->setUnitAI<UnitAI>(command.unitId, gameField);
         }
     };
 }

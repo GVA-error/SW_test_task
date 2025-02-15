@@ -11,6 +11,7 @@ namespace sw
         unitsHeap = std::make_shared<entities::UnitHeap>();
         moveOrder = std::make_shared<entities::MoveOrder>();
         turnPreparationAI = std::make_shared<AI::AI_OrderPraparation>(unitsHeap, moveOrder);
+        turnMasterAI      = std::make_shared<AI::AI_TurnMaster>(unitsHeap, moveOrder);
     }
 
     Simulation::SimulationStatus Simulation::tick()
@@ -20,7 +21,7 @@ namespace sw
         stat.tick = currentTick;
 
         turnPreparationAI->orderPreparation(gameField);
-        bool isActivityFound = turn();
+        bool isActivityFound = turnMasterAI->tick(currentTick);
         if (isActivityFound)
             stat.isFinished = false;
         else
@@ -100,43 +101,5 @@ namespace sw
         spawnCommand<AI::AI_Hunter>(h);
     }
 
-    bool Simulation::turn()
-    {
-        bool f_activityFound = false;
-        if (moveOrder->size() == 0)
-            return f_activityFound;
-        auto curId = moveOrder->get();
-        assert(curId != entities::UNDEFINED_UNIT_ID);
-        auto endId = curId; // Раунд заканчивается при завершении полного цикла.
-        while (true)
-        {
-            bool f_unitActivity = turn(curId);
-            if (f_unitActivity)
-                f_activityFound = true;
-            moveOrder->next();
-            curId = moveOrder->get();
-            if (curId == endId)
-                break;
-        }
-        return f_activityFound;
-    }
-
-    bool Simulation::turn(uint32_t unitId)
-    {
-        auto& u = unitsHeap->unitById(unitId);
-        return turn(u);
-    }
-
-    bool Simulation::turn(sw::entities::Unit& u)
-    {
-        auto& AI = unitAI[u.getId()];
-        bool f_activity = AI->tick(u, currentTick);
-        return f_activity;
-    }
-
-    void Simulation::turtFinish()
-    {
-
-    }
 
 }

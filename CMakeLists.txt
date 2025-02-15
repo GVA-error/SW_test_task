@@ -30,6 +30,7 @@ add_executable(sw_battle_test ${SOURCES}
     src/utils/randomfuncs.h src/utils/randomfuncs.cpp
     src/utils/MoveOrder.h src/utils/MoveOrder.cpp
     src/AI/AI_OrderPreparation.h src/AI/AI_OrderPreparation.cpp
+    src/AI/ai_TurnMaster.h src/AI/ai_TurnMaster.cpp
 
 
 
