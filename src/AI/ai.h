@@ -18,7 +18,7 @@ namespace sw::AI
         // Описываем, что юнит делает во время хода
         // Возвращает был ли юнит активен во время хода
         // Ожидание считаем активностью
-        virtual bool tick(Unit&, uint32_t tickNumber) = 0;
+        virtual bool tick(Unit&, uint32_t tickNumber){ return false; }
 
     protected:
         std::shared_ptr<GameField> gameField;

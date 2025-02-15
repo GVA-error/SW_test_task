@@ -100,7 +100,7 @@ namespace sw
 
     void Simulation::turtStart()
     {
-
+        gameField->eraseDeadUnits();
     }
 
     bool Simulation::turn()

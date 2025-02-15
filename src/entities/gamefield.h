@@ -44,6 +44,7 @@ namespace sw::entities
         // Но будет препядствием пока не будет вызвана eraseDeadUnits
         void kill(uint32_t unitId);
         bool isDead(uint32_t unitId) const;
+        bool isDead(const sw::entities::Unit&) const;
 
         // Обновляет Позицию в которую стремиться юнит.
         // исходит от command::March

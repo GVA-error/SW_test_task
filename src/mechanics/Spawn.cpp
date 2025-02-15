@@ -5,26 +5,34 @@ namespace sw::mechanics
     using namespace sw::entities;
     // Создание юнита представляет из себя заполнение его стат блока
 
-    Unit Spawn(std::shared_ptr<sw::entities::GameField>& gf, const sw::io::SpawnSwordsman& sm)
+    SpawnResult Spawn(std::shared_ptr<sw::entities::GameField>& gf, std::shared_ptr<UnitHeap>& uh, const sw::io::SpawnSwordsman& sm)
     {
-        auto unit = __baseLiveUnit(gf, sm, "SpawnSwordsman");
+        auto res = __baseLiveUnit(gf, uh, sm, "SpawnSwordsman");
+        if (res.f_isCorrect == false)
+            return res;
+
+        Unit& unit = uh->unitById(sm.unitId);
 
         unit.set(UnitAttributes::Strength, sm.strength);
 
         unit.set(UnitMechanic::MELEE_ATTACK);
 
-        return unit;
+        return res;
     }
 
-    Unit Spawn(std::shared_ptr<sw::entities::GameField>& gf, const sw::io::SpawnHunter& h)
+    SpawnResult Spawn(std::shared_ptr<sw::entities::GameField>& gf, std::shared_ptr<UnitHeap>& uh, const sw::io::SpawnHunter& h)
     {
-        auto unit = __baseLiveUnit(gf, h, "SpawnHunter");
-
         if (h.range < 2)
         {
-            unit.markAsIncorrect("we try SpawnHunter with small range");
-            return unit;
+            SpawnResult res;
+            res.incorrectnessReason = "we try SpawnHunter with small range";
+            return res;
         }
+        auto res = __baseLiveUnit(gf, uh, h, "SpawnHunter");
+        if (res.f_isCorrect == false)
+            return res;
+
+        auto& unit = uh->unitById(h.unitId);
 
         unit.set(UnitAttributes::Strength, h.strength);
         unit.set(UnitAttributes::Agility,  h.agility);
@@ -33,7 +41,7 @@ namespace sw::mechanics
         unit.set(UnitMechanic::MELEE_ATTACK);
         unit.set(UnitMechanic::RANGE_ATTACK);
 
-        return unit;
+        return res;
     }
 
 }

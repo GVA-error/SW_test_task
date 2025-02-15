@@ -3,10 +3,12 @@
 
 #include <memory>
 
-#include "entities/Unit.h"
 #include "IO/Commands/SpawnSwordsman.hpp"
 #include "IO/Commands/SpawnHunter.hpp"
+#include "entities/Unit.h"
 #include "entities/gamefield.h"
+#include "entities/unitsheap.h"
+#include "mechanics/mechanicsresults.h"
 
 // Механики создания юнитов на игровом поле
 // Отвечает за заполнение стат блока юнитов
@@ -15,42 +17,49 @@ namespace sw::mechanics
     using namespace sw::entities;
 
     // SpawnSwordsman
-    Unit Spawn(std::shared_ptr<sw::entities::GameField>&, const sw::io::SpawnSwordsman&);
+    SpawnResult Spawn(std::shared_ptr<GameField>&, std::shared_ptr<UnitHeap>&, const sw::io::SpawnSwordsman&);
 
     // SpawnHunter
-    Unit Spawn(std::shared_ptr<sw::entities::GameField>&, const sw::io::SpawnHunter&);
+    SpawnResult Spawn(std::shared_ptr<GameField>&, std::shared_ptr<UnitHeap>&, const sw::io::SpawnHunter&);
 
     // __base* - создание юнитов с предопределённым стат блоком
     // По умолчанию юнит занимает клетку на поле. UnitType::LAND_SOLID.
     template <class UnitSpawnCommand>
-    Unit __baseUnit(std::shared_ptr<sw::entities::GameField>& gf, const UnitSpawnCommand& u, const std::string& name)
+    SpawnResult __baseUnit(std::shared_ptr<sw::entities::GameField>& gf, std::shared_ptr<UnitHeap>& uh,
+                           const UnitSpawnCommand& u, const std::string& name)
     {
-        Unit unit(u.unitId, name);
+        SpawnResult res;
         if (gf == nullptr)
         {
-            unit.markAsIncorrect("can not spawn unit without field");
-            return unit;
+            res.incorrectnessReason = "Can not spawn unit without field";
+            return res;
         }
+        uh->addUnit(u.unitId, name);
+        auto& unit = uh->unitById(u.unitId);
         unit.set(UnitType::LAND_SOLID);
         auto f_success = gf->addUnit(unit, u.x, u.y);
         if (f_success == false)
         {
-            unit.markAsIncorrect("can not add unit in this coordinates");
-            return unit;
+            res.incorrectnessReason = "can not add unit in this coordinates";
+            uh->eraseUnit(u.unitId);
+            return res;
         }
-        return unit;
+        res.f_isCorrect = true;
+        return res;
     }
 
     // Подвижный юнит с хп
     template <class UnitSpawnCommand>
-    Unit __baseLiveUnit(std::shared_ptr<sw::entities::GameField>& gf, const UnitSpawnCommand& u, const std::string& name)
+    SpawnResult __baseLiveUnit(std::shared_ptr<sw::entities::GameField>& gf, std::shared_ptr<UnitHeap>& uh,
+                               const UnitSpawnCommand& u, const std::string& name)
     {
-        auto unit = __baseUnit(gf, u, name);
-        if (unit.isCorrect() == false)
-            return unit;
+        auto res = __baseUnit(gf, uh, u, name);
+        if (res.f_isCorrect == false)
+            return res;
+        auto& unit = uh->unitById(u.unitId);
         unit.set(UnitMechanic::MOVE);
         unit.set(UnitStatus::HP, u.hp);
-        return unit;
+        return res;
     }
 
 }

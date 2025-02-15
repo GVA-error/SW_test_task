@@ -13,6 +13,8 @@ namespace sw::mechanics
             res.f_isMechanicAllowed = false;
             return res;
         }
+        if (u.isDead())
+            return res;
 
         // Ищем кого бы ударить
         auto range    = u.getAttribute(UnitAttributes::Range);

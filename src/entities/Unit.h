@@ -19,6 +19,8 @@ namespace sw::entities
         // id - уникальный идинтификатор юнита
         // name - служит в целях более удобного дебага
         Unit(uint32_t id, const std::string& name = "defaultUnit");
+        // Копирование юнита опасно, так как может нарушить поведение AI
+        Unit(const Unit&) = delete;
 
         const uint32_t    getId() const;
         const std::string getName() const;
@@ -41,11 +43,6 @@ namespace sw::entities
 
         // Контекстные сеттеры
         void takeDamage(int32_t damageHpImpact);
-
-        // дебаг информация о юните
-        bool isCorrect() const;
-        std::string getIncorrectnessReason() const;
-        void markAsIncorrect(const std::string& incorrectnessReason = "we don\'t know why");
 
     private:
         // typeName используется для более простого дебага

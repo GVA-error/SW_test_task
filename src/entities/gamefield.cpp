@@ -58,7 +58,14 @@ namespace sw::entities
 
     bool GameField::step(sw::entities::Unit& u)
     {
-        auto id = u.getId();
+        if (isDead(u))
+        {
+            assert(u.isDead()); // Предполагаем, что у юнита 0 хп.
+            return false;
+        }
+        if (u.isDead())
+            return false;
+        auto id       = u.getId();
         auto& unitPos = unitPosition[id];
 
         // Двигаем юнита
@@ -69,7 +76,8 @@ namespace sw::entities
             unitsOnPosition.erase(unitPos);
         bool f_activity = unitPaths.step(id, landObstacle, unitPos, width, height);
         unitsOnPosition[unitPos].insert(id);
-        landObstacle.insert(unitPos);
+        if (unitIsLandObstacle[id])
+            landObstacle.insert(unitPos);
 
         return f_activity;
     }
@@ -79,15 +87,21 @@ namespace sw::entities
         deadSet.insert(unitId);
         if (unitIsLandObstacle[unitId])
         {
-            const auto& unitPos = unitPosition[unitId];
-            landObstacle.erase(unitPos);
-            unitIsLandObstacle[unitId] = false;
+            // Если нужно, чтобы тело не было препятствием
+            //const auto& unitPos = unitPosition[unitId];
+            //landObstacle.erase(unitPos);
+            //unitIsLandObstacle[unitId] = false;
         }
     }
 
     bool GameField::isDead(uint32_t unitId) const
     {
         return deadSet.find(unitId) != deadSet.end();
+    }
+
+    bool GameField::isDead(const sw::entities::Unit& u) const
+    {
+        return isDead(u.getId());
     }
 
     bool GameField::onMarch(const sw::entities::Unit& u) const
@@ -167,12 +181,23 @@ namespace sw::entities
 
     void GameField::eraseDeadUnits()
     {
-        assert(false);
+        for (auto unitId : deadSet)
+            deleteUnit(unitId);
+        deadSet.clear();
     }
 
-    void deleteUnit(uint32_t unitId)
+    void GameField::deleteUnit(uint32_t unitId)
     {
-        assert(false);
+        auto unitPos = unitPosition[unitId];
+        if (unitIsLandObstacle[unitId])
+            landObstacle.erase(unitPos);
+        unitIsLandObstacle.erase(unitId);
+        //unitPaths.
+        unitsOnPosition[unitPos].erase(unitId);
+        if (unitsOnPosition[unitPos].size() == 0)
+            unitsOnPosition.erase(unitPos);
+        unitPosition.erase(unitId);
+
     }
 
 }

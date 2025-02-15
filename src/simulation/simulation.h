@@ -81,6 +81,7 @@ namespace sw
         // Обобщённое поведение создания юнита
         // Создаёт как самого юнита, так и соответствующие бекэнды
         // Добавляет его в очередь хода.
+        // UnitAI - искуственный интелект юнита. Наследник AI::AI.
         template <class UnitAI, typename TCommand>
         void spawnCommand(TCommand& command)
         {
@@ -89,16 +90,15 @@ namespace sw
                 eventLog.log(currentTick, sw::io::Error("Simulation::spawnCommand trying to recreate unit with same id."));
                 return;
             }
-            auto unit = sw::mechanics::Spawn(gameField, command);
-            if (unit.isCorrect() == false)
+            auto res = sw::mechanics::Spawn(gameField, unitsHeap, command);
+            if (res.f_isCorrect == false)
             {
-                auto logMess = "Simulation::spawnCommand can not spawn by this command. Reason: " + unit.getIncorrectnessReason();
+                auto logMess = "Simulation::spawnCommand can not spawn by this command. Reason: " + res.incorrectnessReason;
                 eventLog.log(currentTick, sw::io::Error(logMess));
                 return;
             }
-            moveOrder.push_back(unit.getId());
-            unitsHeap->addUnit(unit);
-            setUnitAI<UnitAI>(unit.getId());
+            moveOrder.push_back(command.unitId);
+            setUnitAI<UnitAI>(command.unitId);
         }
 
         // Устанавливаем AI для юнита

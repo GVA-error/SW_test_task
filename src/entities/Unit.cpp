@@ -19,23 +19,6 @@ namespace sw::entities
         return id;
     }
 
-
-    bool Unit::isCorrect() const
-    {
-        return f_isCorrect;
-    }
-
-    std::string Unit::getIncorrectnessReason() const
-    {
-        return incorrectnessReason;
-    }
-
-    void Unit::markAsIncorrect(const std::string& reason)
-    {
-        f_isCorrect = true;
-        incorrectnessReason = reason;
-    }
-
     bool Unit::isAllowed(const UnitMechanic& m) const
     {
         return mechanic.at(m);

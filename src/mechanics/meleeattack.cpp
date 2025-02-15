@@ -12,6 +12,8 @@ namespace sw::mechanics
             res.f_isMechanicAllowed = false;
             return res;
         }
+        if (u.isDead())
+            return res;
 
         // Ищем кого бы ударить
         auto targetId = gf->getRandomUnitInRadius(u, 1);

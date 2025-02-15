@@ -27,7 +27,7 @@ namespace sw::AI::primitive
             if (attackRes.f_unitDied)
             {
                 sw::io::UnitDied unitDiedEvent;
-                unitDiedEvent.unitId = u.getId();
+                unitDiedEvent.unitId = attackRes.targetUnit;
                 eventLog.log(tickNumber, std::move(unitDiedEvent));
             }
         }

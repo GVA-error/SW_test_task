@@ -16,6 +16,11 @@ namespace sw::utils
         setUnitTarget(id, {x, y});
     }
 
+    void UnitPaths::eraseUnitPaths(uint32_t id)
+    {
+        target.erase(id);
+    }
+
     bool UnitPaths::step(uint32_t id, FieldPos& unitPos, uint32_t fieldWidth, uint32_t fieldHeight)
     {
         return step(id, {}, unitPos, fieldWidth, fieldHeight);
