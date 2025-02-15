@@ -9,6 +9,7 @@ namespace sw
     Simulation::Simulation()
     {
         unitsHeap = std::make_shared<entities::UnitHeap>();
+        moveOrder = std::make_shared<entities::MoveOrder>();
     }
 
     Simulation::SimulationStatus Simulation::tick()
@@ -100,17 +101,31 @@ namespace sw
 
     void Simulation::turtStart()
     {
+        // Убираем физическое претставление
+        auto deadSet = gameField->getDeadSet();
+        moveOrder->erase(deadSet);
+        unitsHeap->eraseUnit(deadSet);
         gameField->eraseDeadUnits();
+        assert(unitsHeap->isContainsDead() == false);
     }
 
     bool Simulation::turn()
     {
         bool f_activityFound = false;
-        for (auto unitId : moveOrder)
+        if (moveOrder->size() == 0)
+            return f_activityFound;
+        auto curId = moveOrder->get();
+        assert(curId != entities::UNDEFINED_UNIT_ID);
+        auto endId = curId; // Раунд заканчивается при завершении полного цикла.
+        while (true)
         {
-            bool f_unitActivity = turn(unitId);
+            bool f_unitActivity = turn(curId);
             if (f_unitActivity)
                 f_activityFound = true;
+            moveOrder->next();
+            curId = moveOrder->get();
+            if (curId == endId)
+                break;
         }
         return f_activityFound;
     }

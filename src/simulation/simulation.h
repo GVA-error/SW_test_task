@@ -19,14 +19,15 @@
 #include <IO/Events/UnitSpawned.hpp>
 
 #include "entities/gamefield.h"
-#include "mechanics/Spawn.h"
 #include "entities/unitsheap.h"
+#include "utils/MoveOrder.h"
+#include "mechanics/Spawn.h"
 #include "AI/ai.h"
 
 namespace sw
 {
 /*
- * Симулирует игровой процесс c помощью Simulation::tick.
+ * Медиатор. Реагирует на команды действиями AI* координитруя их.
 */
     class Simulation
     {
@@ -54,12 +55,10 @@ namespace sw
         uint32_t currentTick = 0;
         sw::EventLog eventLog;
 
-        // очерёдность ходов
-        std::list<uint32_t> moveOrder;
-
-        // юниты и куча используються AI
+        // юниты, очередь и куча используються AI
         std::shared_ptr<entities::UnitHeap>  unitsHeap;
         std::shared_ptr<entities::GameField> gameField;
+        std::shared_ptr<entities::MoveOrder> moveOrder;
 
         // искуственный интеллект юнита
         std::map<uint32_t, std::unique_ptr<AI::AI>> unitAI;
@@ -97,7 +96,7 @@ namespace sw
                 eventLog.log(currentTick, sw::io::Error(logMess));
                 return;
             }
-            moveOrder.push_back(command.unitId);
+            moveOrder->push(command.unitId);
             setUnitAI<UnitAI>(command.unitId);
         }
 

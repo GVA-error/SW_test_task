@@ -179,6 +179,11 @@ namespace sw::entities
         return deadSet.size();
     }
 
+    std::unordered_set<uint32_t> GameField::getDeadSet() const
+    {
+        return deadSet;
+    }
+
     void GameField::eraseDeadUnits()
     {
         for (auto unitId : deadSet)

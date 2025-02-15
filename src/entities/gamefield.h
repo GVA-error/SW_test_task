@@ -64,6 +64,7 @@ namespace sw::entities
 
         // Сколько юнитов мертвы.
         uint32_t deadSetSize() const;
+        std::unordered_set<uint32_t> getDeadSet() const;
 
         // Чистим поле от трупов
         void eraseDeadUnits();

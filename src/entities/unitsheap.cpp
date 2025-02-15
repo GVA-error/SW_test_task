@@ -2,6 +2,11 @@
 
 namespace sw::entities
 {
+    UnitHeap::UnitHeap()
+    {
+
+    }
+
     void UnitHeap::addUnit(Unit&& u)
     {
         heap[u.getId()] = std::move(u);
@@ -27,9 +32,18 @@ namespace sw::entities
         heap.erase(unitId);
     }
 
-    UnitHeap::UnitHeap()
+    void UnitHeap::eraseUnit(const std::unordered_set<uint32_t>& unitIds)
     {
+        for (auto unitId : unitIds)
+            eraseUnit(unitId);
+    }
 
+    bool UnitHeap::isContainsDead() const
+    {
+        for (auto& [unitId, unit] : heap)
+            if (unit.isDead())
+                return true;
+        return false;
     }
 
 

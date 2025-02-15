@@ -3,6 +3,7 @@
 
 #include <cstdint>
 #include <unordered_map>
+#include <unordered_set>
 
 #include "Unit.h"
 
@@ -18,6 +19,10 @@ namespace sw::entities
         Unit& unitById(uint32_t unitId);
         bool  contains(uint32_t unitId) const;
         void  eraseUnit(uint32_t unitId);
+        void  eraseUnit(const std::unordered_set<uint32_t>& unitId);
+
+        // Проверка корректно ли были удалены все мёртвые юниты.
+        bool  isContainsDead() const;
 
         UnitHeap();
         virtual ~UnitHeap(){}

@@ -28,6 +28,7 @@ add_executable(sw_battle_test ${SOURCES}
     src/entities/unitsheap.h src/entities/unitsheap.cpp
     src/mechanics/attack.h src/mechanics/attack.cpp
     src/utils/randomfuncs.h src/utils/randomfuncs.cpp
+    src/utils/MoveOrder.h src/utils/MoveOrder.cpp
 
 
 
