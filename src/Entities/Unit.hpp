@@ -18,7 +18,7 @@ namespace sw::entities
         virtual ~Unit(){};
 
         // id - уникальный идинтификатор юнита
-        // name - служит в целях более удобного дебага
+        // name - по умолчанию обозначает тип юнита.
         Unit(uint32_t id, const std::string& name = "defaultUnit");
         // Копирование юнита опасно, так как может нарушить поведение AI
         Unit(const Unit&) = delete;

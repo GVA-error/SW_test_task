@@ -1,3 +1,6 @@
+#include <fstream>
+#include <iostream>
+
 #include <IO/Commands/CreateMap.hpp>
 #include <IO/Commands/March.hpp>
 #include <IO/Commands/SpawnHunter.hpp>
@@ -13,14 +16,12 @@
 #include <IO/System/CommandParser.hpp>
 #include <IO/System/EventLog.hpp>
 #include <IO/System/PrintDebug.hpp>
-#include <fstream>
-#include <iostream>
 
 #include "Simulation/Simulation.hpp"
 
 /*
- * - Всё таки выделить результаты механик
  * - проверка орфографии
+ * - выделить механику/AI создания поля и March?
  *
  * Тесты
  * - юнит с тем же id

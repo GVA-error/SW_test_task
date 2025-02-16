@@ -44,6 +44,13 @@ namespace sw::mechanics
             return res;
         }
         res.f_isCorrect = true;
+
+        res.unitId   = unit.getId();
+        res.unitType = unit.getName();
+        auto unitPos = gf->getUnitPosition(unit.getId());
+        res.x        = unitPos.x;
+        res.y        = unitPos.y;
+
         return res;
     }
 

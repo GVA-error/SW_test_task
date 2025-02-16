@@ -1,4 +1,6 @@
 #include "Simulation.hpp"
+#include "IO/Events/MapCreated.hpp"
+#include "IO/Events/MarchStarted.hpp"
 #include "AI/AI_Swordsman.hpp"
 #include "AI/AI_Hunter.hpp"
 
@@ -52,7 +54,6 @@ namespace sw
         }
 
         gameField = std::make_shared<sw::entities::GameField>(w, h);
-
         eventLog.log(currentTick, io::MapCreated{w, h});
     }
 

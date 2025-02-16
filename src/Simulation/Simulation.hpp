@@ -9,14 +9,6 @@
 #include <IO/Commands/March.hpp>
 #include <IO/Commands/SpawnHunter.hpp>
 #include <IO/Commands/SpawnSwordsman.hpp>
-#include <IO/Events/Error.hpp>
-#include <IO/Events/MapCreated.hpp>
-#include <IO/Events/MarchEnded.hpp>
-#include <IO/Events/MarchStarted.hpp>
-#include <IO/Events/UnitAttacked.hpp>
-#include <IO/Events/UnitDied.hpp>
-#include <IO/Events/UnitMoved.hpp>
-#include <IO/Events/UnitSpawned.hpp>
 #include <IO/System/EventLog.hpp>
 
 #include "Entities/UnitsHeap.hpp"
@@ -43,6 +35,7 @@ namespace sw
 
         Simulation();
         virtual ~Simulation() {};
+
         // Состояние симуляции на моммент последнего тика
         SimulationStatus getSimulationStatus() const;
 
@@ -61,13 +54,13 @@ namespace sw
         SimulationStatus simulationStatus;
 
         // Крупные программные сущности
-        // юниты, очередь ходов и куча используються различными AI
+        // поле, очередь ходов и куча используються различными AI
         std::shared_ptr<entities::UnitHeap>  unitsHeap;
         std::shared_ptr<entities::MoveOrder> moveOrder;
         std::shared_ptr<entities::GameField> gameField;
 
         // Очистка поля от тел и прочие подготовки для хода
-        std::shared_ptr<AI::AI_TurnPraparation>  turnPreparationAI;
+        std::shared_ptr<AI::AI_TurnPraparation>   turnPreparationAI;
         // Контролирует другие AI во время хода
         std::shared_ptr<AI::AI_TurnMaster>        turnMasterAI;
         // Создаёт юнитов на куче и поле. Добавляет их в очередь хода

@@ -7,7 +7,7 @@
 #include "Entities/UnitsHeap.hpp"
 #include "Entities/GameField.hpp"
 #include "Utils/MoveOrder.hpp"
-#include "Mechanics/Spawn.hpp"
+#include "AI/Primitives/pAI_Spawn.hpp"
 
 namespace sw::AI
 {
@@ -30,13 +30,9 @@ namespace sw::AI
                 eventLog.log(currentTick, sw::io::Error("Simulation::spawnCommand trying to recreate unit with same id."));
                 return false;
             }
-            auto res = sw::mechanics::Spawn(gf, unitsHeap, command);
-            if (res.f_isCorrect == false)
-            {
-                auto logMess = "Simulation::spawnCommand can not spawn by this command. Reason: " + res.incorrectnessReason;
-                eventLog.log(currentTick, sw::io::Error(logMess));
+            bool f_activity = primitive::pAI_tryToSpawn(gf, unitsHeap, command, currentTick, eventLog);
+            if (f_activity == false)
                 return false;
-            }
             moveOrder->push(command.unitId);
             return true;
         }
