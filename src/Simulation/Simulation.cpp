@@ -52,9 +52,11 @@ namespace sw
             eventLog.log(currentTick, sw::io::Error("Simulation::CreateMap incorrect sizes."));
             return;
         }
-
         gameField = std::make_shared<sw::entities::GameField>(w, h);
-        eventLog.log(currentTick, io::MapCreated{w, h});
+        io::MapCreated mapCreatedEvent;
+        mapCreatedEvent.width  = w;
+        mapCreatedEvent.height = h;
+        eventLog.log(currentTick, std::move(mapCreatedEvent));
     }
 
     void Simulation::command(sw::io::March& command)

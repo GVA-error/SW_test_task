@@ -7,7 +7,7 @@
 
 namespace sw::mechanics
 {
-    // Результат достаточный для логирования описания создания юнита.
+    // Результат достаточный для логирования создания юнита.
     struct SpawnResult : BaseResult
     {
         bool f_isCorrect = false;         // Был ли создан юнит

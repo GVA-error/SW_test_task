@@ -4,7 +4,7 @@
 
 namespace sw::mechanics
 {
-    // Результат достаточный для логирования описания ближней атаки.
+    // Результат достаточный для логирования ближней атаки.
     struct MeleeAttackResult : AttackResult
     {
     };

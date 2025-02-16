@@ -7,7 +7,7 @@
 namespace sw::mechanics
 {
 
-    // Результат достаточный для логирования описания атаки.
+    // Результат достаточный для логирования атаки.
     struct AttackResult : BaseResult
     {
         uint32_t targetUnit   = entities::UNDEFINED_UNIT_ID; // id юнита которого атаковали.

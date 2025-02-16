@@ -55,6 +55,7 @@ namespace sw
 
         // Крупные программные сущности
         // поле, очередь ходов и куча используються различными AI
+        // Являются частью симуляции. Поэтому создаются в ней.
         std::shared_ptr<entities::UnitHeap>  unitsHeap;
         std::shared_ptr<entities::MoveOrder> moveOrder;
         std::shared_ptr<entities::GameField> gameField;
