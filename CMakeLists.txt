@@ -33,6 +33,7 @@ add_executable(sw_battle_test ${SOURCES}
     src/AI/ai_TurnMaster.h src/AI/ai_TurnMaster.cpp
     src/AI/primitives/pAI_MarchLog.h src/AI/primitives/pAI_MarchLog.cpp
     src/AI/AI_UnitSpawner.h src/AI/AI_UnitSpawner.cpp
+    src/IO/Commands/Tick.h
 
 
 

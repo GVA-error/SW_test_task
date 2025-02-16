@@ -14,24 +14,27 @@ namespace sw
         unitSpawnerAI     = std::make_shared<AI::AI_UnitSpawner>(unitsHeap, moveOrder);
     }
 
-    Simulation::SimulationStatus Simulation::tick()
+    void Simulation::command(sw::io::Tick& tick)
     {
-        SimulationStatus stat;
-        stat.isFinished = false;
-        stat.tick = currentTick;
+        simulationStatus.isFinished = false;
+        simulationStatus.tick = currentTick;
 
         turnPreparationAI->orderPreparation(gameField);
         bool isActivityFound = turnMasterAI->tick(currentTick);
         if (isActivityFound)
-            stat.isFinished = false;
+            simulationStatus.isFinished = false;
         else
-            stat.isFinished = true;
+            simulationStatus.isFinished = true;
         turnPreparationAI->orderPostHandle(gameField);
 
         sleep(1);
 
         currentTick++;
-        return stat;
+    }
+
+    Simulation::SimulationStatus Simulation::getSimulationStatus() const
+    {
+        return simulationStatus;
     }
 
     void Simulation::command(sw::io::CreateMap& command)

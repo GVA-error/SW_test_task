@@ -4,11 +4,12 @@
 #include <unistd.h>
 #include <cstdint>
 #include <memory>
+
 #include <IO/Commands/CreateMap.hpp>
+#include <IO/Commands/Tick.h>
 #include <IO/Commands/March.hpp>
 #include <IO/Commands/SpawnHunter.hpp>
 #include <IO/Commands/SpawnSwordsman.hpp>
-#include <IO/System/EventLog.hpp>
 #include <IO/Events/Error.hpp>
 #include <IO/Events/MapCreated.hpp>
 #include <IO/Events/MarchEnded.hpp>
@@ -17,6 +18,7 @@
 #include <IO/Events/UnitDied.hpp>
 #include <IO/Events/UnitMoved.hpp>
 #include <IO/Events/UnitSpawned.hpp>
+#include <IO/System/EventLog.hpp>
 
 #include "entities/gamefield.h"
 #include "entities/unitsheap.h"
@@ -41,13 +43,14 @@ namespace sw
         };
 
         Simulation();
-        SimulationStatus tick();
+        // Состояние симуляции на моммент последнего тика
+        SimulationStatus getSimulationStatus() const;
 
-        // Комады инициализации
-        // Интерфейс для CommandParser::add
+        // Командный интерфейс симуляции
         template <typename TCommand>
         void command(TCommand&) { eventLog.log(currentTick, sw::io::Error("Simulation::command type not found.")); }
         void command(sw::io::CreateMap&);
+        void command(sw::io::Tick&);
         void command(sw::io::March&);
         void command(sw::io::SpawnHunter&);
         void command(sw::io::SpawnSwordsman&);
@@ -55,16 +58,18 @@ namespace sw
     private:
         uint32_t currentTick = 0;
         sw::EventLog eventLog;
+        SimulationStatus simulationStatus;
 
-        // юниты, очередь и куча используються AI
+        // Крупные программные сущности
+        // юниты, очередь ходов и куча используються различными AI
         std::shared_ptr<entities::UnitHeap>  unitsHeap;
-        std::shared_ptr<entities::GameField> gameField;
         std::shared_ptr<entities::MoveOrder> moveOrder;
+        std::shared_ptr<entities::GameField> gameField;
 
         // Очистка поля от тел и прочие подготовки для хода
-        std::shared_ptr<AI::AI_OrderPraparation> turnPreparationAI;
+        std::shared_ptr<AI::AI_OrderPraparation>  turnPreparationAI;
         // Контролирует другие AI во время хода
-        std::shared_ptr<AI::AI_TurnMaster>       turnMasterAI;
+        std::shared_ptr<AI::AI_TurnMaster>        turnMasterAI;
         // Создаёт юнитов на куче и поле. Добавляет их в очередь хода
         std::shared_ptr<AI::AI_UnitSpawner>       unitSpawnerAI;
 

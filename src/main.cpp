@@ -2,6 +2,7 @@
 #include <IO/Commands/March.hpp>
 #include <IO/Commands/SpawnHunter.hpp>
 #include <IO/Commands/SpawnSwordsman.hpp>
+#include <IO/Commands/Tick.h>
 #include <IO/Events/MapCreated.hpp>
 #include <IO/Events/MarchEnded.hpp>
 #include <IO/Events/MarchStarted.hpp>
@@ -23,10 +24,12 @@
  * - AI -> AI_Unit
  * - Контейнеры сущностей
  * - pai_defaultAttackLog -> pAI_AttackLog
- * - AI_Spawner
  * - orderPreparationAI->turnPreparationAI
  * - проверка орфографии
  * - все диструкторы виртуальные
+ * - hpp
+ * - pragma once
+ * - сортировка хедеров по порядку абстракции
  *
  * Тесты
  * - юнит с тем же id
@@ -73,11 +76,12 @@ int main(int argc, char** argv)
 
     while (true)
     {
-        auto status = simulation.tick();
+        sw::io::Tick tickCommand;
+        simulation.command(tickCommand);
+        auto status = simulation.getSimulationStatus();
         if (status.isFinished)
             break;
     }
-
 
     /*
 
