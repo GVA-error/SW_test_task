@@ -13,14 +13,14 @@ namespace sw::AI
     // Отвечает за события начала и конца хода
     // Подготавливает поле к событиям хода
     using namespace sw::entities;
-    class AI_OrderPraparation
+    class AI_TurnPraparation
     {
     public:
-        AI_OrderPraparation(std::shared_ptr<UnitHeap>& uh, std::shared_ptr<MoveOrder>& mo)
+        AI_TurnPraparation(std::shared_ptr<UnitHeap>& uh, std::shared_ptr<MoveOrder>& mo)
             : unitsHeap(uh), moveOrder(mo)
         {
         }
-        virtual ~AI_OrderPraparation() {};
+        virtual ~AI_TurnPraparation() {};
 
         void orderPreparation(std::shared_ptr<GameField>&);
         void orderPostHandle(std::shared_ptr<GameField>&);
@@ -29,7 +29,7 @@ namespace sw::AI
         std::shared_ptr<UnitHeap>  unitsHeap;
         std::shared_ptr<MoveOrder> moveOrder;
         sw::EventLog eventLog;
-        AI_OrderPraparation() = delete;
+        AI_TurnPraparation() = delete;
     };
 }
 

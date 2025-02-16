@@ -9,7 +9,7 @@ namespace sw::AI
     using namespace sw::entities;
 
     AI_Hunter::AI_Hunter(std::shared_ptr<sw::entities::GameField>& gf, std::shared_ptr<UnitHeap>& uh)
-        : AI(gf, uh)
+        : AI_Unit(gf, uh)
     {
     }
 

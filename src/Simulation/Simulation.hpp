@@ -22,7 +22,7 @@
 #include "Entities/UnitsHeap.hpp"
 #include "Entities/GameField.hpp"
 #include "Utils/MoveOrder.hpp"
-#include "AI/AI_OrderPreparation.hpp"
+#include "AI/AI_TurnPreparation.hpp"
 #include "AI/AI_UnitSpawner.hpp"
 #include "AI/AI_TurnMaster.hpp"
 
@@ -67,7 +67,7 @@ namespace sw
         std::shared_ptr<entities::GameField> gameField;
 
         // Очистка поля от тел и прочие подготовки для хода
-        std::shared_ptr<AI::AI_OrderPraparation>  turnPreparationAI;
+        std::shared_ptr<AI::AI_TurnPraparation>  turnPreparationAI;
         // Контролирует другие AI во время хода
         std::shared_ptr<AI::AI_TurnMaster>        turnMasterAI;
         // Создаёт юнитов на куче и поле. Добавляет их в очередь хода

@@ -8,7 +8,7 @@ namespace sw
     {
         unitsHeap         = std::make_shared<entities::UnitHeap>();
         moveOrder         = std::make_shared<entities::MoveOrder>();
-        turnPreparationAI = std::make_shared<AI::AI_OrderPraparation>(unitsHeap, moveOrder);
+        turnPreparationAI = std::make_shared<AI::AI_TurnPraparation>(unitsHeap, moveOrder);
         turnMasterAI      = std::make_shared<AI::AI_TurnMaster>(unitsHeap, moveOrder);
         unitSpawnerAI     = std::make_shared<AI::AI_UnitSpawner>(unitsHeap, moveOrder);
     }

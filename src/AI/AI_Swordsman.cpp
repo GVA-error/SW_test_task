@@ -8,7 +8,7 @@ namespace sw::AI
     using namespace sw::entities;
 
     AI_Swordsman::AI_Swordsman(std::shared_ptr<sw::entities::GameField>& gf, std::shared_ptr<UnitHeap>& uh)
-        : AI(gf, uh)
+        : AI_Unit(gf, uh)
     {
     }
 

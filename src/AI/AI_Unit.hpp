@@ -11,13 +11,13 @@
 namespace sw::AI
 {
     using namespace sw::entities;
-    class AI
+    class AI_Unit
     {
     public:
-        virtual ~AI() {};
+        virtual ~AI_Unit() {};
 
         // Описываем, что юнит делает во время хода
-        // Возвращает был ли юнит активен во время хода
+        // Возвращает был ли юнит активен
         // Ожидание считаем активностью
         virtual bool tick(Unit&, uint32_t tickNumber){ return false; }
 
@@ -25,8 +25,8 @@ namespace sw::AI
         std::shared_ptr<GameField> gameField;
         std::shared_ptr<UnitHeap>  unitHeap;
         sw::EventLog eventLog;
-        AI() = delete;
-        AI(std::shared_ptr<GameField>& gf, std::shared_ptr<UnitHeap>& uh)
+        AI_Unit() = delete;
+        AI_Unit(std::shared_ptr<GameField>& gf, std::shared_ptr<UnitHeap>& uh)
             : gameField(gf), unitHeap(uh)
         {
         }

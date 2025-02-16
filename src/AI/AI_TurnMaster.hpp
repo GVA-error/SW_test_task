@@ -36,7 +36,7 @@ namespace sw::AI
         std::shared_ptr<UnitHeap>               unitsHeap;
         std::shared_ptr<utils::MoveOrder>       moveOrder;
         // искуственный интеллект юнита
-        std::map<uint32_t, std::unique_ptr<AI>> unitAI;
+        std::map<uint32_t, std::unique_ptr<AI_Unit>> unitAI;
         sw::EventLog eventLog;
         AI_TurnMaster() = delete;
 
