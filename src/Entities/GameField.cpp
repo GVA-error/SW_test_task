@@ -110,6 +110,11 @@ namespace sw::entities
         return unitPaths.haveTarget(u.getId());
     }
 
+    const FieldPos& GameField::getMarchTargetPos(const Unit& u) const
+    {
+        return unitPaths.getUnitTarget(u.getId());
+    }
+
     std::list<uint32_t> GameField::getUnitsInRadius(const Unit& u, uint32_t radius, bool f_liveOnly) const
     {
         return getUnitsInRadius(u.getId(), radius, f_liveOnly);

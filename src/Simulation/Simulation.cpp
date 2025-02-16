@@ -1,6 +1,5 @@
 #include "Simulation.hpp"
 #include "IO/Events/MapCreated.hpp"
-#include "IO/Events/MarchStarted.hpp"
 #include "AI/AI_Swordsman.hpp"
 #include "AI/AI_Hunter.hpp"
 
@@ -13,6 +12,7 @@ namespace sw
         turnPreparationAI = std::make_shared<AI::AI_TurnPraparation>(unitsHeap, moveOrder);
         turnMasterAI      = std::make_shared<AI::AI_TurnMaster>(unitsHeap, moveOrder);
         unitSpawnerAI     = std::make_shared<AI::AI_UnitSpawner>(unitsHeap, moveOrder);
+        generalAI         = std::make_shared<AI::AI_General>(unitsHeap);
     }
 
     void Simulation::command(sw::io::Tick& tick)
@@ -69,31 +69,7 @@ namespace sw
             eventLog.log(currentTick, sw::io::Error("Simulation::March field is not created. Use Simulation::CreateMap before."));
             return;
         }
-
-        auto w = gameField->getWidth();
-        auto h = gameField->getHeight();
-
-        auto unitPos = gameField->getUnitPosition(unitId);
-        if (unitPos == utils::UNDEFINED_POSITION)
-        {
-            eventLog.log(currentTick, sw::io::Error("Simulation::March field is not created. Use Simulation::CreateMap before."));
-            return;
-        }
-
-        bool f_outOfMap = false;
-        f_outOfMap |= targetX < 0;
-        f_outOfMap |= targetY < 0;
-        f_outOfMap |= targetX >= w;
-        f_outOfMap |= targetY >= h;
-
-        if (f_outOfMap)
-        {
-            eventLog.log(currentTick, sw::io::Error("Simulation::March incorrect position. Target is out of map."));
-            return;
-        }
-
-        gameField->March(unitId, targetX, targetY);
-        eventLog.log(currentTick, io::MarchStarted{unitId, unitPos.x, unitPos.y, targetX, targetY});
+        generalAI->MARCH(currentTick, gameField, unitId, targetX, targetY);
     }
 
     void Simulation::command(sw::io::SpawnSwordsman& sm)

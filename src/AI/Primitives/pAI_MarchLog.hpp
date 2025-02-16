@@ -1,15 +1,17 @@
 #pragma once
 
+#include <assert.h>
+
 #include <IO/System/EventLog.hpp>
 #include <IO/System/EventLog.hpp>
 
-#include "Entities/Unit.hpp"
 #include "Mechanics/MechanicsResult/MarchResult.hpp"
 
 // вывод лога для шага марша
 namespace sw::AI::primitive
 {
-    using namespace sw::entities;
-    void pAI_MoveLog(const Unit&, mechanics::MarchResult&, uint32_t tickNumber, sw::EventLog& eventLog);
+    void pAI_MoveLog(mechanics::MarchResult&, uint32_t tickNumber, sw::EventLog& eventLog);
+
+    void pAI_MarchStartLog(mechanics::MarchResult&, uint32_t tickNumber, sw::EventLog& eventLog);
 }
 

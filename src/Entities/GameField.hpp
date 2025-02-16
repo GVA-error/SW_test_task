@@ -38,20 +38,22 @@ namespace sw::entities
         // Для более простого решения коллизий быстрых юнитов, всегда двигаемся на один шаг.
         // Пример: если юнит обладает скоростью 5, то step() должна быть вызвана 5 раз за ход.
         // Если юнит двигался или ждал, возвращает true.
-        bool step(sw::entities::Unit&);
+        bool step(Unit&);
 
         // Обозначаем юнита как мёртвого. Теперь он не куда не пойдёт.
         // Но будет препядствием пока не будет вызвана eraseDeadUnits
         void kill(uint32_t unitId);
         bool isDead(uint32_t unitId) const;
-        bool isDead(const sw::entities::Unit&) const;
+        bool isDead(const Unit&) const;
 
         // Обновляет Позицию в которую стремиться юнит.
         // исходит от command::March
         void March(uint32_t unitId, uint32_t targetX, uint32_t targetY);
 
         // Стремиться ли юнит куда либо
-        bool onMarch(const sw::entities::Unit&) const;
+        bool onMarch(const Unit&) const;
+        // .. куда
+        const FieldPos& getMarchTargetPos(const Unit&) const;
 
         // Возвращает id всех юнитов в Coordinates::distance(radius) и центром в точке поля
         // f_liveOnly - ищем только живых

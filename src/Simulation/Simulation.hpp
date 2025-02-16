@@ -17,6 +17,7 @@
 #include "AI/AI_TurnPreparation.hpp"
 #include "AI/AI_UnitSpawner.hpp"
 #include "AI/AI_TurnMaster.hpp"
+#include "AI/AI_General.hpp"
 
 namespace sw
 {
@@ -62,10 +63,12 @@ namespace sw
 
         // Очистка поля от тел и прочие подготовки для хода
         std::shared_ptr<AI::AI_TurnPraparation>   turnPreparationAI;
-        // Контролирует другие AI во время хода
-        std::shared_ptr<AI::AI_TurnMaster>        turnMasterAI;
         // Создаёт юнитов на куче и поле. Добавляет их в очередь хода
         std::shared_ptr<AI::AI_UnitSpawner>       unitSpawnerAI;
+        // Отдаёт команды юнитам
+        std::shared_ptr<AI::AI_General>           generalAI;
+        // Контролирует AI юнитов во время хода
+        std::shared_ptr<AI::AI_TurnMaster>        turnMasterAI;
 
         // Обобщённое поведение создания юнита
         // Создаёт как самого юнита, так и соответствующие бекэнды

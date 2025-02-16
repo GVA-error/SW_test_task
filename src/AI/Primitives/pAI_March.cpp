@@ -10,7 +10,16 @@ namespace sw::AI::primitive
     {
         // пробуем сделать шаг.
         auto stepRes = mechanics::tryToNextStep(gf, u);
-        pAI_MoveLog(u, stepRes, tickNumber, eventLog);
+        pAI_MoveLog(stepRes, tickNumber, eventLog);
         return stepRes.f_activity;
+    }
+
+
+    bool pAI_tryToStartMarch(std::shared_ptr<GameField>& gf, Unit& u, const FieldPos& targetPos,
+                             uint32_t tickNumber, sw::EventLog& eventLog)
+    {
+        auto startRes = mechanics::tryToStartMarch(gf, u, targetPos);
+        pAI_MarchStartLog(startRes, tickNumber, eventLog);
+        return startRes.f_activity;
     }
 }

@@ -71,5 +71,12 @@ namespace sw::utils
         return target.find(id) != target.end();
     }
 
+    const FieldPos& UnitPaths::getUnitTarget(uint32_t id) const
+    {
+        if (haveTarget(id) == false)
+            return UNDEFINED_POSITION;
+        return target.at(id);
+    }
+
 }
 

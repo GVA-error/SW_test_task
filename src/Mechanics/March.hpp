@@ -13,5 +13,7 @@ namespace sw::mechanics
 
     // Делаем следующий шаг на одну клетку к цели марша.
     MarchResult tryToNextStep(std::shared_ptr<sw::entities::GameField>&, sw::entities::Unit&);
+
+    MarchResult tryToStartMarch(std::shared_ptr<sw::entities::GameField>&, sw::entities::Unit&, const FieldPos&);
 }
 

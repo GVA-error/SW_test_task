@@ -14,4 +14,7 @@ namespace sw::AI::primitive
     using namespace sw::entities;
     bool pAI_tryToStep(std::shared_ptr<GameField>& gf, Unit& u,
                          uint32_t tickNumber, sw::EventLog& eventLog);
+
+    bool pAI_tryToStartMarch(std::shared_ptr<GameField>& gf, Unit& u, const FieldPos& targetPos,
+                             uint32_t tickNumber, sw::EventLog& eventLog);
 }

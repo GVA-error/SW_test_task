@@ -29,6 +29,7 @@ namespace sw::utils
         bool step(uint32_t id, FieldPos& unitPos, uint32_t fieldWidth, uint32_t fieldHeight);
 
         bool haveTarget(uint32_t id) const;
+        const FieldPos& getUnitTarget(uint32_t id) const;
 
     private:
         // По id возвращает позицию цели юнита
