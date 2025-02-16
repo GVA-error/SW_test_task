@@ -1,7 +1,7 @@
-#include "entities/UnitEnums.h"
-#include "AI/primitives/pai_meleeattack.h"
-#include "AI/primitives/pai_march.h"
-#include "AI_Swordsman.h"
+#include "Entities/UnitEnums.hpp"
+#include "AI/Primitives/pAI_MeleeAttack.hpp"
+#include "AI/Primitives/pAI_March.hpp"
+#include "AI_Swordsman.hpp"
 
 namespace sw::AI
 {

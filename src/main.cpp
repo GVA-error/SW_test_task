@@ -16,15 +16,10 @@
 #include <fstream>
 #include <iostream>
 
-#include "simulation/simulation.h"
+#include "Simulation/Simulation.hpp"
 
 /*
- * - Переименование названий файлов.
- * - AI -> AI_Unit
- * - pai_defaultAttackLog -> pAI_AttackLog
- * - orderPreparationAI->turnPreparationAI
  * - проверка орфографии
- * - hpp
  *
  * Тесты
  * - юнит с тем же id
