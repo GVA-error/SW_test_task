@@ -23,10 +23,11 @@ namespace sw::mechanics
 
         res.f_activity = true;
         // Описываем, что произошло
-        res.targetUnit = target.getId();
-        res.damage     = damage;
-        res.targetHp   = target.getCurrentHP();
-        res.f_unitDied = target.isDead();
+        res.attackerUnit = attacker.getId();
+        res.targetUnit   = target.getId();
+        res.damage       = damage;
+        res.targetHp     = target.getCurrentHP();
+        res.f_unitDied   = target.isDead();
     }
 
     template <class ATTACK_RESULT>

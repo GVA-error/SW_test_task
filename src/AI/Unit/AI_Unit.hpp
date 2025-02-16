@@ -11,6 +11,7 @@
 namespace sw::AI
 {
     using namespace sw::entities;
+    // Базовый класс поведения юнита во время хода.
     class AI_Unit
     {
     public:

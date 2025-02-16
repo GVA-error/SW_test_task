@@ -11,7 +11,7 @@ namespace sw::AI::primitive
     {
         // Пробуем атаковать
         auto attackRes = mechanics::tryToRandomRangeAttack(gf, uh, u, DAMAGE_STAT);
-        pAI_AttackLog(u, attackRes, tickNumber, eventLog);
+        pAI_AttackLog(attackRes, tickNumber, eventLog);
         return attackRes.f_activity;
     }
 }

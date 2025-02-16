@@ -10,6 +10,7 @@ namespace sw::mechanics
     // Результат достаточный для логирования атаки.
     struct AttackResult : BaseResult
     {
+        uint32_t attackerUnit = entities::UNDEFINED_UNIT_ID; // id атакующего юнита
         uint32_t targetUnit   = entities::UNDEFINED_UNIT_ID; // id юнита которого атаковали.
         uint32_t damage       = 0;                           // размер полученного урона.
         uint32_t targetHp     = 0;                           // сколько хп осталось у атакуемого

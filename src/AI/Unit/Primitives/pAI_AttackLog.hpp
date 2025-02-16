@@ -5,21 +5,18 @@
 #include <IO/Events/UnitAttacked.hpp>
 #include <IO/Events/UnitDied.hpp>
 
-#include "Entities/Unit.hpp"
-
 // вывод лога для атак
 namespace sw::AI::primitive
 {
-    using namespace sw::entities;
     template <class ATTACK_RES_TYPE>
-    void pAI_AttackLog(const Unit& u, const ATTACK_RES_TYPE& attackRes,
+    void pAI_AttackLog(const ATTACK_RES_TYPE& attackRes,
                        uint32_t tickNumber, sw::EventLog& eventLog)
     {
         // Выводим лог только если атака была произведена
         if (attackRes.f_activity)
         {
             sw::io::UnitAttacked unitAttackedEvent;
-            unitAttackedEvent.attackerUnitId = u.getId();
+            unitAttackedEvent.attackerUnitId = attackRes.attackerUnit;
             unitAttackedEvent.targetUnitId   = attackRes.targetUnit;
             unitAttackedEvent.targetHp       = attackRes.targetHp;
             unitAttackedEvent.damage         = attackRes.damage;

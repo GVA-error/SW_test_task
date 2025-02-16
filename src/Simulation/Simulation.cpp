@@ -28,8 +28,6 @@ namespace sw
             simulationStatus.isFinished = true;
         turnPreparationAI->orderPostHandle(gameField);
 
-        sleep(1);
-
         currentTick++;
     }
 

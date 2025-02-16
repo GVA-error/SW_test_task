@@ -7,7 +7,7 @@
 
 #include "Mechanics/MechanicsResult/MarchResult.hpp"
 
-// вывод лога для шага марша
+// вывод лога для марша
 namespace sw::AI::primitive
 {
     void pAI_MoveLog(mechanics::MarchResult&, uint32_t tickNumber, sw::EventLog& eventLog);
