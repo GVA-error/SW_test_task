@@ -1,7 +1,7 @@
 #include "Simulation.hpp"
 #include "IO/Events/MapCreated.hpp"
-#include "AI/AI_Swordsman.hpp"
-#include "AI/AI_Hunter.hpp"
+#include "AI/Unit/AI_Swordsman.hpp"
+#include "AI/Unit/AI_Hunter.hpp"
 
 namespace sw
 {

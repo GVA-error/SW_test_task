@@ -1,7 +1,8 @@
-#include "Entities/UnitEnums.hpp"
-#include "AI/Primitives/pAI_MeleeAttack.hpp"
-#include "AI/Primitives/pAI_March.hpp"
 #include "AI_Swordsman.hpp"
+
+#include "Entities/UnitEnums.hpp"
+#include "AI/Unit/Primitives/pAI_MeleeAttack.hpp"
+#include "AI/Unit/Primitives/pAI_March.hpp"
 
 namespace sw::AI
 {

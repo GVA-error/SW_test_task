@@ -7,7 +7,7 @@
 #include "Entities/UnitsHeap.hpp"
 #include "Entities/GameField.hpp"
 #include "Utils/MoveOrder.hpp"
-#include "AI/Primitives/pAI_Spawn.hpp"
+#include "AI/Unit/Primitives/pAI_Spawn.hpp"
 
 namespace sw::AI
 {

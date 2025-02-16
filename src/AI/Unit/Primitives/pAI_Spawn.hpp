@@ -8,7 +8,7 @@
 #include "Entities/UnitsHeap.hpp"
 #include "Entities/GameField.hpp"
 #include "Mechanics/Spawn.hpp"
-#include "AI/Primitives/pAI_SpawnLog.hpp"
+#include "AI/Unit/Primitives/pAI_SpawnLog.hpp"
 
 // Описывем как АИ использует механики спавна
 namespace sw::AI::primitive

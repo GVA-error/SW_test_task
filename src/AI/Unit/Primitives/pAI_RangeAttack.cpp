@@ -1,7 +1,7 @@
 #include "pAI_RangeAttack.hpp"
 
 #include "Mechanics/RangeAttack.hpp"
-#include "AI/Primitives/pAI_AttackLog.hpp"
+#include "AI/Unit/Primitives/pAI_AttackLog.hpp"
 
 namespace sw::AI::primitive
 {

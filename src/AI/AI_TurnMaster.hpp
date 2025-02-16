@@ -7,7 +7,7 @@
 #include "Entities/UnitsHeap.hpp"
 #include "Entities/GameField.hpp"
 #include "Utils/MoveOrder.hpp"
-#include "AI/AI_Unit.hpp"
+#include "AI/Unit/AI_Unit.hpp"
 
 namespace sw::AI
 {
