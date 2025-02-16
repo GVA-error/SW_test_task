@@ -21,9 +21,9 @@
 #include "entities/gamefield.h"
 #include "entities/unitsheap.h"
 #include "utils/MoveOrder.h"
-#include "mechanics/Spawn.h"
 #include "AI/AI_OrderPreparation.h"
 #include "AI/ai_TurnMaster.h"
+#include "AI/AI_UnitSpawner.h"
 
 namespace sw
 {
@@ -61,10 +61,12 @@ namespace sw
         std::shared_ptr<entities::GameField> gameField;
         std::shared_ptr<entities::MoveOrder> moveOrder;
 
-        // Очистка поля от тел и прочие подготовки
+        // Очистка поля от тел и прочие подготовки для хода
         std::shared_ptr<AI::AI_OrderPraparation> turnPreparationAI;
+        // Контролирует другие AI во время хода
         std::shared_ptr<AI::AI_TurnMaster>       turnMasterAI;
-
+        // Создаёт юнитов на куче и поле. Добавляет их в очередь хода
+        std::shared_ptr<AI::AI_UnitSpawner>       unitSpawnerAI;
 
         // Обобщённое поведение создания юнита
         // Создаёт как самого юнита, так и соответствующие бекэнды
@@ -73,19 +75,7 @@ namespace sw
         template <class UnitAI, typename TCommand>
         void spawnCommand(TCommand& command)
         {
-            if (unitsHeap->contains(command.unitId))
-            {
-                eventLog.log(currentTick, sw::io::Error("Simulation::spawnCommand trying to recreate unit with same id."));
-                return;
-            }
-            auto res = sw::mechanics::Spawn(gameField, unitsHeap, command);
-            if (res.f_isCorrect == false)
-            {
-                auto logMess = "Simulation::spawnCommand can not spawn by this command. Reason: " + res.incorrectnessReason;
-                eventLog.log(currentTick, sw::io::Error(logMess));
-                return;
-            }
-            moveOrder->push(command.unitId);
+            unitSpawnerAI->spawn(gameField, currentTick, command);
             turnMasterAI->setUnitAI<UnitAI>(command.unitId, gameField);
         }
     };

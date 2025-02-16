@@ -1,5 +1,4 @@
 #include "simulation.h"
-
 #include "AI/AI_Swordsman.h"
 #include "AI/AI_Hunter.h"
 
@@ -8,10 +7,11 @@ namespace sw
 
     Simulation::Simulation()
     {
-        unitsHeap = std::make_shared<entities::UnitHeap>();
-        moveOrder = std::make_shared<entities::MoveOrder>();
+        unitsHeap         = std::make_shared<entities::UnitHeap>();
+        moveOrder         = std::make_shared<entities::MoveOrder>();
         turnPreparationAI = std::make_shared<AI::AI_OrderPraparation>(unitsHeap, moveOrder);
         turnMasterAI      = std::make_shared<AI::AI_TurnMaster>(unitsHeap, moveOrder);
+        unitSpawnerAI     = std::make_shared<AI::AI_UnitSpawner>(unitsHeap, moveOrder);
     }
 
     Simulation::SimulationStatus Simulation::tick()

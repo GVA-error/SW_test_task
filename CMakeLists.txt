@@ -31,6 +31,8 @@ add_executable(sw_battle_test ${SOURCES}
     src/utils/MoveOrder.h src/utils/MoveOrder.cpp
     src/AI/AI_OrderPreparation.h src/AI/AI_OrderPreparation.cpp
     src/AI/ai_TurnMaster.h src/AI/ai_TurnMaster.cpp
+    src/AI/primitives/pAI_MarchLog.h src/AI/primitives/pAI_MarchLog.cpp
+    src/AI/AI_UnitSpawner.h src/AI/AI_UnitSpawner.cpp
 
 
 

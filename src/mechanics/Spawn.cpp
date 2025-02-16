@@ -5,7 +5,8 @@ namespace sw::mechanics
     using namespace sw::entities;
     // Создание юнита представляет из себя заполнение его стат блока
 
-    SpawnResult Spawn(std::shared_ptr<sw::entities::GameField>& gf, std::shared_ptr<UnitHeap>& uh, const sw::io::SpawnSwordsman& sm)
+    SpawnResult Spawn(std::shared_ptr<sw::entities::GameField>& gf, std::shared_ptr<UnitHeap>& uh,
+                      const sw::io::SpawnSwordsman& sm)
     {
         auto res = __baseLiveUnit(gf, uh, sm, "SpawnSwordsman");
         if (res.f_isCorrect == false)
