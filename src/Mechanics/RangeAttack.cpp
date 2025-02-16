@@ -19,7 +19,8 @@ namespace sw::mechanics
 
         // Ищем кого бы ударить
         auto range    = u.getAttribute(UnitAttributes::Range);
-        auto targetId = gf->getRandomUnitInRadius(u, range);
+        assert(range>=2);
+        auto targetId = gf->getRandomUnitInRadius(u, 2, range);
 
         // Не нашли
         if (targetId == UNDEFINED_UNIT_ID)

@@ -21,7 +21,8 @@ namespace sw::mechanics
         return res;
     }
 
-    SpawnResult Spawn(std::shared_ptr<sw::entities::GameField>& gf, std::shared_ptr<UnitHeap>& uh, const sw::io::SpawnHunter& h)
+    SpawnResult Spawn(std::shared_ptr<sw::entities::GameField>& gf, std::shared_ptr<UnitHeap>& uh,
+                      const sw::io::SpawnHunter& h)
     {
         if (h.range < 2)
         {

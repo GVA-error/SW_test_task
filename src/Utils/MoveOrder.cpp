@@ -8,7 +8,7 @@ namespace sw::utils
     {
         // важно для лучшей аммортизированности.
         // так как getBuffer.push_back() на низких capacity не так эффективен
-        getBuffer.reserve(10);
+        getBuffer.reserve(preReserveSize);
     }
 
     const std::vector<uint32_t> MoveOrder::getTurnQueue()
@@ -32,7 +32,7 @@ namespace sw::utils
         return getBuffer;
     }
 
-    void MoveOrder::clearDead()
+    void MoveOrder::clearDead() const
     {
         if (f_clearDead)
             while (order.size())
@@ -58,7 +58,7 @@ namespace sw::utils
         order.push(nextId);
     }
 
-    uint32_t MoveOrder::get()
+    uint32_t MoveOrder::get() const
     {
         clearDead();
         if (order.size() == 0)

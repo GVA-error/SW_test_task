@@ -17,7 +17,7 @@ namespace sw::mechanics
             return res;
 
         // Ищем кого бы ударить
-        auto targetId = gf->getRandomUnitInRadius(u, 1);
+        auto targetId = gf->getRandomUnitInRadius(u, 1, 1);
 
         // Не нашли
         if (targetId == UNDEFINED_UNIT_ID)

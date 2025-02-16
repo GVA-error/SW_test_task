@@ -41,7 +41,9 @@ namespace sw::entities
     bool GameField::addUnit(sw::entities::Unit& unit, uint32_t x, uint32_t y)
     {
         auto id = unit.getId();
-        utils::FieldPos pos({x, y});
+        utils::FieldPos pos;
+        pos.x = x;
+        pos.y = y;
         auto f_solid = unit.is(UnitType::LAND_SOLID);
         if (f_solid)
         {
@@ -115,14 +117,14 @@ namespace sw::entities
         return unitPaths.getUnitTarget(u.getId());
     }
 
-    std::list<uint32_t> GameField::getUnitsInRadius(const Unit& u, uint32_t radius, bool f_liveOnly) const
+    std::list<uint32_t> GameField::getUnitsInRadius(const Unit& u, uint32_t minRadius, uint32_t maxRadius, bool f_liveOnly) const
     {
-        return getUnitsInRadius(u.getId(), radius, f_liveOnly);
+        return getUnitsInRadius(u.getId(), minRadius, maxRadius, f_liveOnly);
     }
 
-    std::list<uint32_t> GameField::getUnitsInRadius(uint32_t unitId, uint32_t radius, bool f_liveOnly) const
+    std::list<uint32_t> GameField::getUnitsInRadius(uint32_t unitId, uint32_t minRadius, uint32_t maxRadius, bool f_liveOnly) const
     {
-        return getUnitsInRadius(getUnitPosition(unitId), radius, f_liveOnly);
+        return getUnitsInRadius(getUnitPosition(unitId), minRadius, maxRadius, f_liveOnly);
     }
 
     uint32_t GameField::findRandomLiveUnitInPos(uint32_t x, uint32_t y) const
@@ -148,31 +150,49 @@ namespace sw::entities
         return c;
     }
 
-    std::list<uint32_t> GameField::getUnitsInRadius(const FieldPos& p, uint32_t radius, bool f_liveOnly) const
+    std::list<FieldPos> GameField::getPositionsInSqrtRadius(const FieldPos& pos, uint32_t radius) const
+    {
+        std::list<FieldPos> resList;
+        int32_t xMin = int32_t(pos.x)-radius;
+        int32_t xMax = int32_t(pos.x)+radius;
+        int32_t yMin = int32_t(pos.y)-radius;
+        int32_t yMax = int32_t(pos.y)+radius;
+        for (int32_t x = xMin; x<=xMax; x++)
+            for (int32_t y = yMin; y<=yMax; y++)
+            {
+                FieldPos nextPos;
+                nextPos.x = x;
+                nextPos.y = y;
+                resList.push_back(nextPos);
+            }
+        return resList;
+    }
+
+    std::list<uint32_t> GameField::getUnitsInRadius(const FieldPos& p, uint32_t minRadius, uint32_t maxRadius, bool f_liveOnly) const
     {
         std::list<uint32_t> res;
-        for (int32_t x = p.x-radius; x<=p.x+radius; x++)
-            for (int32_t y = p.y-radius; y<=p.y+radius; y++)
+        auto sqrtPoss = getPositionsInSqrtRadius(p, maxRadius);
+        for (const auto& c : sqrtPoss)
+        {
+            if (c.x < 0 || c.y < 0)
+                continue;
+            if (c.x == p.x && c.y == p.y)
+                continue;
+            auto distanceValue = utils::distance(p, c);
+            if (distanceValue <= maxRadius && distanceValue >= minRadius)
             {
-                if (x < 0 || y < 0)
+                auto randomUnitId = findRandomLiveUnitInPos(c.x, c.y);
+                if (randomUnitId == UNDEFINED_UNIT_ID)
                     continue;
-                if (x == p.x && y == p.y)
-                    continue;
-                auto distanceValue = utils::distance(p, x, y);
-                if (distanceValue <= radius)
-                {
-                    auto randomUnitId = findRandomLiveUnitInPos(x, y);
-                    if (randomUnitId == UNDEFINED_UNIT_ID)
-                        continue;
-                    res.push_back(randomUnitId);
-                }
+                res.push_back(randomUnitId);
             }
+        }
         return res;
     }
 
-    uint32_t GameField::getRandomUnitInRadius(const Unit& u, uint32_t radius, bool f_liveOnly) const
+    uint32_t GameField::getRandomUnitInRadius(const Unit& u, uint32_t minRadius, uint32_t maxRadius, bool f_liveOnly) const
     {
-        auto candidates = getUnitsInRadius(u, radius, f_liveOnly);
+        auto candidates = getUnitsInRadius(u, minRadius, maxRadius, f_liveOnly);
         if (candidates.size() == 0)
             return UNDEFINED_UNIT_ID;
 

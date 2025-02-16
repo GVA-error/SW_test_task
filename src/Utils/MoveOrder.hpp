@@ -8,11 +8,15 @@
 
 namespace sw::utils
 {
-    // Зацикленная очередь ходов.
+    // Зацикленная ленивая очередь ходов.
     class MoveOrder
     {
         // Чистить ли очередь от мертвецов
         const bool f_clearDead = true;
+        // Размер заранее выделенной памяти.
+        // Важно для лучшей аммортизированности getBuffer.
+        // так как getBuffer.push_back() на низких capacity не так эффективен
+        const uint32_t preReserveSize = 10;
     public:
         MoveOrder();
         virtual ~MoveOrder() {};
@@ -25,17 +29,19 @@ namespace sw::utils
         // Вернёт готовую для использования очерёдность хода.
         const std::vector<uint32_t> getTurnQueue();
     private:
+        // mutable требуется для ленивого clearDead
         // очерёдность ходов
-        std::queue<uint32_t> order;
+        mutable std::queue<uint32_t> order;
         // Будут удалены при следующем обращении.
-        std::unordered_set<uint32_t> deadSet;
+        mutable std::unordered_set<uint32_t> deadSet;
         // Буфер для лучшей амортизации при формировании
         std::vector<uint32_t> getBuffer;
-        // Удаляем встреченных мертвецов
-        void clearDead();
         // Для итерирования по кругу
         void next();
-        uint32_t get();
+        // Удаляем встреченных мертвецов
+        // Требуется константность так как делаем это лениво из get()
+        void clearDead() const;
+        uint32_t get() const;
     };
 
 }

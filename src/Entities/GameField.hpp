@@ -57,12 +57,14 @@ namespace sw::entities
 
         // Возвращает id всех юнитов в Coordinates::distance(radius) и центром в точке поля
         // f_liveOnly - ищем только живых
-        std::list<uint32_t> getUnitsInRadius(const FieldPos&, uint32_t radius, bool f_liveOnly=true) const;
+        // minRadius  - минимальное расстояние для поиска
+        // maxRadius  - .. максимальное
+        std::list<uint32_t> getUnitsInRadius(const FieldPos&, uint32_t minRadius, uint32_t maxRadius, bool f_liveOnly=true) const;
         // .. с центром в позиции юнита
-        std::list<uint32_t> getUnitsInRadius(const Unit& u, uint32_t radius, bool f_liveOnly=true) const;
-        std::list<uint32_t> getUnitsInRadius(uint32_t unitId, uint32_t radius, bool f_liveOnly=true) const;
+        std::list<uint32_t> getUnitsInRadius(const Unit& u, uint32_t minRadius, uint32_t maxRadius, bool f_liveOnly=true) const;
+        std::list<uint32_t> getUnitsInRadius(uint32_t unitId, uint32_t minRadius, uint32_t maxRadius, bool f_liveOnly=true) const;
         // .. вернёт случайного юнита в радиусе
-        uint32_t getRandomUnitInRadius(const Unit& u, uint32_t radius, bool f_liveOnly=true) const;
+        uint32_t getRandomUnitInRadius(const Unit& u, uint32_t minRadius, uint32_t maxRadius, bool f_liveOnly=true) const;
 
         // Сколько юнитов мертвы.
         uint32_t deadSetSize() const;
@@ -104,6 +106,7 @@ namespace sw::entities
 
         void deleteUnit(uint32_t unitId);
         uint32_t findRandomLiveUnitInPos(uint32_t x, uint32_t y) const;
+        std::list<FieldPos> getPositionsInSqrtRadius(const FieldPos&, uint32_t radius) const;
     };
 }
 
