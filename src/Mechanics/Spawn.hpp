@@ -7,7 +7,7 @@
 
 #include "Entities/UnitsHeap.hpp"
 #include "Entities/GameField.hpp"
-#include "Mechanics/MechanicsResults.hpp"
+#include "Mechanics/MechanicsResult/SpawnResult.hpp"
 
 // Механики создания юнитов на игровом поле
 // Отвечает за заполнение стат блока юнитов

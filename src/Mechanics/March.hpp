@@ -4,7 +4,7 @@
 
 #include "Entities/Unit.hpp"
 #include "Entities/GameField.hpp"
-#include "Mechanics/MechanicsResults.hpp"
+#include "Mechanics/MechanicsResult/MarchResult.hpp"
 
 // Механики марша
 namespace sw::mechanics

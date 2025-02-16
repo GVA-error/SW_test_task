@@ -4,7 +4,7 @@
 #include <IO/System/EventLog.hpp>
 
 #include "Entities/Unit.hpp"
-#include "Mechanics/MechanicsResults.hpp"
+#include "Mechanics/MechanicsResult/MarchResult.hpp"
 
 // вывод лога для атак
 namespace sw::AI::primitive

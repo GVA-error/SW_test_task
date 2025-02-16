@@ -1,4 +1,5 @@
 #include "RangeAttack.hpp"
+
 #include "Mechanics/Attack.hpp"
 
 namespace sw::mechanics
