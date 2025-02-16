@@ -1,4 +1,5 @@
 #include "gamefield.h"
+#include "utils/randomfuncs.h"
 
 namespace sw::entities
 {

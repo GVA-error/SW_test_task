@@ -1,5 +1,4 @@
-#ifndef MECHANICSRESULTS_H
-#define MECHANICSRESULTS_H
+#pragma once
 
 #include <cstdint>
 #include <string>
@@ -44,4 +43,3 @@ namespace sw::mechanics
     };
 }
 
-#endif // MECHANICSRESULTS_H

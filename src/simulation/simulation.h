@@ -1,5 +1,4 @@
-#ifndef SIMULATION_H
-#define SIMULATION_H
+#pragma once
 
 #include <unistd.h>
 #include <cstdint>
@@ -86,4 +85,4 @@ namespace sw
         }
     };
 }
-    #endif // SIMULATION_H
+

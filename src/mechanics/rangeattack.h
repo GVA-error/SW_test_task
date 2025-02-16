@@ -1,6 +1,4 @@
-#ifndef RANGEATTACK_H
-#define RANGEATTACK_H
-
+#pragma once
 
 #include <memory>
 
@@ -28,4 +26,3 @@ namespace sw::mechanics
 
 }
 
-#endif // RANGEATTACK_H

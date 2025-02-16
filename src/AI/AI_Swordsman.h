@@ -1,5 +1,4 @@
-#ifndef AI_SWORDSMAN_H
-#define AI_SWORDSMAN_H
+#pragma once
 
 #include "ai.h"
 
@@ -16,4 +15,3 @@ namespace sw::AI
     };
 }
 
-#endif // AI_SWORDSMAN_H

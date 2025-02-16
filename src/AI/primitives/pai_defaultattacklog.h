@@ -1,5 +1,4 @@
-#ifndef PAI_DEFAULTATTACKLOG_H
-#define PAI_DEFAULTATTACKLOG_H
+#pragma once
 
 #include "IO/System/EventLog.hpp"
 #include "entities/Unit.h"
@@ -34,4 +33,3 @@ namespace sw::AI::primitive
     }
 }
 
-#endif // PAI_DEFAULTATTACKLOG_H

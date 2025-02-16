@@ -1,5 +1,4 @@
-#ifndef AI_TURNMASTER_H
-#define AI_TURNMASTER_H
+#pragma once
 
 #include <memory>
 #include "entities/unitsheap.h"
@@ -45,4 +44,3 @@ namespace sw::AI
     };
 }
 
-#endif // AI_TURNMASTER_H

@@ -1,5 +1,4 @@
-#ifndef MARCH_H
-#define MARCH_H
+#pragma once
 
 #include <memory>
 
@@ -16,4 +15,3 @@ namespace sw::mechanics
     MarchResult tryToNextStep(std::shared_ptr<sw::entities::GameField>&, sw::entities::Unit&);
 }
 
-#endif // MARCH_H

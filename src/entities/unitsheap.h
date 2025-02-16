@@ -1,5 +1,4 @@
-#ifndef UNITSHEAP_H
-#define UNITSHEAP_H
+#pragma once
 
 #include <cstdint>
 #include <unordered_map>
@@ -32,4 +31,3 @@ namespace sw::entities
     };
 }
 
-#endif // UNITSHEAP_H

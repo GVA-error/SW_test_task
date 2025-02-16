@@ -1,5 +1,4 @@
-#ifndef RANDOMFUNCS_H
-#define RANDOMFUNCS_H
+#pragma once
 
 #include <cstdint>
 #include <cstdlib>
@@ -17,4 +16,3 @@ namespace sw::utils
     }
 }
 
-#endif // RANDOMFUNCS_H

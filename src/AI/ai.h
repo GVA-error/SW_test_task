@@ -1,5 +1,4 @@
-#ifndef AI_H
-#define AI_H
+#pragma once
 
 #include <memory>
 #include "entities/gamefield.h"
@@ -32,4 +31,3 @@ namespace sw::AI
     };
 }
 
-#endif // AI_H

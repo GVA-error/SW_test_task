@@ -1,5 +1,4 @@
-#ifndef PAI_RANGEATTACK_H
-#define PAI_RANGEATTACK_H
+#pragma once
 
 #include <memory>
 
@@ -19,6 +18,3 @@ namespace sw::AI::primitive
 
 
 }
-
-
-#endif // PAI_RANGEATTACK_H

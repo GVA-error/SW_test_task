@@ -1,5 +1,4 @@
-#ifndef SPAWN_H
-#define SPAWN_H
+#pragma once
 
 #include <memory>
 
@@ -64,4 +63,3 @@ namespace sw::mechanics
 
 }
 
-#endif // SPAWN_H

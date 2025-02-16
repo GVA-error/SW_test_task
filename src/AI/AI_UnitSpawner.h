@@ -1,5 +1,4 @@
-#ifndef AI_UNITSPAWNER_H
-#define AI_UNITSPAWNER_H
+#pragma once
 
 #include <memory>
 #include "entities/gamefield.h"
@@ -48,4 +47,3 @@ namespace sw::AI
     };
 }
 
-#endif // AI_UNITSPAWNER_H

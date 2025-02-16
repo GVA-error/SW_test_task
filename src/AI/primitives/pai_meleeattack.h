@@ -1,5 +1,4 @@
-#ifndef PAI_MELEEATTACK_H
-#define PAI_MELEEATTACK_H
+#pragma once
 
 #include <memory>
 
@@ -17,5 +16,3 @@ namespace sw::AI::primitive
                      uint32_t tickNumber, sw::EventLog&, UnitAttributes DAMAGE_STAT);
 
 }
-
-#endif // PAI_MELEEATTACK_H

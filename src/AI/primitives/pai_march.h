@@ -1,5 +1,5 @@
-#ifndef PAI_MARCH_H
-#define PAI_MARCH_H
+#pragma once
+
 #include <memory>
 
 #include "IO/System/EventLog.hpp"
@@ -14,5 +14,3 @@ namespace sw::AI::primitive
     bool pAI_tryToStep(std::shared_ptr<GameField>& gf, Unit& u,
                          uint32_t tickNumber, sw::EventLog& eventLog);
 }
-
-#endif // PAI_MARCH_H

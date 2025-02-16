@@ -1,5 +1,4 @@
-#ifndef UNITPATHS_H
-#define UNITPATHS_H
+#pragma once
 
 #include <cstdint>
 #include <map>
@@ -38,4 +37,3 @@ namespace sw::utils
     };
 }
 
-#endif // UNITPATHS_H

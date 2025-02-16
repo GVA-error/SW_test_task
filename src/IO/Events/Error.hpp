@@ -1,22 +1,20 @@
-#ifndef ERROR_H
-#define ERROR_H
+#pragma once
 
 #include <string>
 
 namespace sw::io
 {
-struct Error
-{
-    constexpr static const char* Name = "ERROR";
-
-    std::string description{};
-
-    template <typename Visitor>
-    void visit(Visitor& visitor)
+    struct Error
     {
-        visitor.visit("description", description);
-    }
-};
+        constexpr static const char* Name = "ERROR";
+
+        std::string description{};
+
+        template <typename Visitor>
+        void visit(Visitor& visitor)
+        {
+            visitor.visit("description", description);
+        }
+    };
 }
 
-#endif // ERROR_H

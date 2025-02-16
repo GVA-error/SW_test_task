@@ -1,5 +1,4 @@
-#ifndef UNIT_H
-#define UNIT_H
+#pragma once
 
 #include <cstdint>
 #include <unordered_map>
@@ -65,5 +64,3 @@ namespace sw::entities
     };
 
 };
-
-#endif // UNIT_H

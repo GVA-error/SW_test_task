@@ -1,5 +1,4 @@
-#ifndef AI_HUNTER_H
-#define AI_HUNTER_H
+#pragma once
 
 #include "ai.h"
 
@@ -18,4 +17,3 @@ namespace sw::AI
 
 }
 
-#endif // AI_HUNTER_H

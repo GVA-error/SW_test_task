@@ -1,5 +1,4 @@
-#ifndef MELEEATTACK_H
-#define MELEEATTACK_H
+#pragma once
 
 #include <memory>
 
@@ -27,4 +26,3 @@ namespace sw::mechanics
                                 const UnitAttributes& DAMAGE_STAT);
 }
 
-#endif // MELEEATTACK_H

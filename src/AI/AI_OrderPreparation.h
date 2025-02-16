@@ -1,5 +1,4 @@
-#ifndef AI_ORDERPREPARATION_H
-#define AI_ORDERPREPARATION_H
+#pragma once
 
 #include <memory>
 #include "entities/gamefield.h"
@@ -32,5 +31,3 @@ namespace sw::AI
     };
 }
 
-
-#endif // AI_ORDERPREPARATION_H

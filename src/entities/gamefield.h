@@ -1,5 +1,4 @@
-#ifndef GAMEFIELD_H
-#define GAMEFIELD_H
+#pragma once
 
 #include <assert.h>
 #include <cstdint>
@@ -13,7 +12,6 @@
 
 #include "utils/Coordinates.h"
 #include "utils/UnitPaths.h"
-#include "utils/randomfuncs.h"
 #include "entities/Unit.h"
 
 namespace sw::entities
@@ -106,4 +104,3 @@ namespace sw::entities
     };
 }
 
-#endif // GAMEFIELD_H

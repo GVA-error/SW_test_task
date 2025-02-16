@@ -1,5 +1,4 @@
-#ifndef MOVEORDER_H
-#define MOVEORDER_H
+#pragma once
 
 #include <assert.h>
 #include <cstdint>
@@ -41,4 +40,3 @@ namespace sw::utils
 
 }
 
-#endif // MOVEORDER_H

@@ -19,9 +19,7 @@
 #include "simulation/simulation.h"
 
 /*
- * - все диструкторы виртуальные
  * - Переименование названий файлов.
- * - COMMAND - step.
  * - AI -> AI_Unit
  * - pai_defaultAttackLog -> pAI_AttackLog
  * - orderPreparationAI->turnPreparationAI
@@ -34,7 +32,7 @@
  * - юнит с тем же id
  * - не создание поля/юнита
  * - 1x1 1x2 1x100
- * -
+ * - volgrind симулировать намеренно утечку памяти AI
  *
  * - Более серьёзная проверка с использованием обычного cmake.
  */

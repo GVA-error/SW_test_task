@@ -1,5 +1,4 @@
-#ifndef ATTACK_H
-#define ATTACK_H
+#pragma once
 
 #include <memory>
 #include "entities/Unit.h"
@@ -37,4 +36,3 @@ namespace sw::mechanics
     }
 }
 
-#endif // ATTACK_H

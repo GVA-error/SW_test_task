@@ -1,5 +1,4 @@
-#ifndef PAI_MARCHLOG_H
-#define PAI_MARCHLOG_H
+#pragma once
 
 #include "IO/System/EventLog.hpp"
 #include "IO/System/EventLog.hpp"
@@ -13,5 +12,3 @@ namespace sw::AI::primitive
     void pAI_MoveLog(const Unit& u, mechanics::MarchResult& moveRes, uint32_t tickNumber, sw::EventLog& eventLog);
 }
 
-
-#endif // PAI_MARCHLOG_H

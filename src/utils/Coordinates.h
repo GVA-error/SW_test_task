@@ -1,5 +1,4 @@
-#ifndef COORDINATES_H
-#define COORDINATES_H
+#pragma once
 
 #include <cstdint>
 #include <cmath>
@@ -83,5 +82,3 @@ namespace std {
 
 }
 
-
-#endif // COORDINATES_H

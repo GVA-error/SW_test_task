@@ -1,5 +1,4 @@
-#ifndef UNITENUMS_H
-#define UNITENUMS_H
+#pragma once
 
 #include <cstdint>
 
@@ -43,4 +42,3 @@ namespace sw::entities
     static const uint32_t UNDEFINED_UNIT_ID = UINT32_MAX;
 }
 
-#endif // UNITENUMS_H
