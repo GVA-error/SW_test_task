@@ -23,10 +23,10 @@ namespace sw::utils
         auto end = cur;
         while (true)
         {
-            next();
             cur = get();
             getBuffer.push_back(cur);
-            if (cur == end)
+            next();
+            if (get() == end)
                 break;
         }
         return getBuffer;
