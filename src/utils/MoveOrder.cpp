@@ -4,7 +4,33 @@
 
 namespace sw::utils
 {
-    MoveOrder::MoveOrder() {}
+    MoveOrder::MoveOrder()
+    {
+        // важно для лучшей аммортизированности.
+        // так как getBuffer.push_back() на низких capacity не так эффективен
+        getBuffer.reserve(10);
+    }
+
+    const std::vector<uint32_t> MoveOrder::getTurnQueue()
+    {
+        getBuffer.clear();
+        if (order.size() == 0)
+            return getBuffer;
+        auto cur = get();
+        assert(cur != entities::UNDEFINED_UNIT_ID);
+        // Ход заканчивается при завершении полного цикла.
+        // Когда вновь вернёмся к end
+        auto end = cur;
+        while (true)
+        {
+            next();
+            cur = get();
+            getBuffer.push_back(cur);
+            if (cur == end)
+                break;
+        }
+        return getBuffer;
+    }
 
     void MoveOrder::clearDead()
     {

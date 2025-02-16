@@ -8,18 +8,12 @@ namespace sw::AI
         bool f_activityFound = false;
         if (moveOrder->size() == 0)
             return f_activityFound;
-        auto curId = moveOrder->get();
-        assert(curId != entities::UNDEFINED_UNIT_ID);
-        auto endId = curId; // Раунд заканчивается при завершении полного цикла.
-        while (true)
+        const auto& turnQueue = moveOrder->getTurnQueue();
+        for (auto curId : turnQueue)
         {
             bool f_unitActivity = tick(curId, currentTick);
             if (f_unitActivity)
                 f_activityFound = true;
-            moveOrder->next();
-            curId = moveOrder->get();
-            if (curId == endId)
-                break;
         }
         return f_activityFound;
     }
