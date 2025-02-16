@@ -16,6 +16,8 @@ namespace sw::entities
     {
     public:
         Unit(){};
+        virtual ~Unit(){};
+
         // id - уникальный идинтификатор юнита
         // name - служит в целях более удобного дебага
         Unit(uint32_t id, const std::string& name = "defaultUnit");

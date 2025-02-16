@@ -19,14 +19,13 @@
 #include "simulation/simulation.h"
 
 /*
+ * - все диструкторы виртуальные
  * - Переименование названий файлов.
  * - COMMAND - step.
  * - AI -> AI_Unit
- * - Контейнеры сущностей
  * - pai_defaultAttackLog -> pAI_AttackLog
  * - orderPreparationAI->turnPreparationAI
  * - проверка орфографии
- * - все диструкторы виртуальные
  * - hpp
  * - pragma once
  * - сортировка хедеров по порядку абстракции

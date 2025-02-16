@@ -43,6 +43,7 @@ namespace sw
         };
 
         Simulation();
+        virtual ~Simulation() {};
         // Состояние симуляции на моммент последнего тика
         SimulationStatus getSimulationStatus() const;
 

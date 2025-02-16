@@ -15,6 +15,9 @@ namespace sw::utils
         // Чистить ли очередь от мертвецов
         const bool f_clearDead = true;
     public:
+        MoveOrder();
+        virtual ~MoveOrder() {};
+
         // Добавление/удаление юнита из очереди
         void push(uint32_t unitId);
         void erase(const std::unordered_set<uint32_t>& unitIds);
@@ -22,7 +25,6 @@ namespace sw::utils
         uint32_t size() const;
         // Вернёт готовую для использования очерёдность хода.
         const std::vector<uint32_t> getTurnQueue();
-        MoveOrder();
     private:
         // очерёдность ходов
         std::queue<uint32_t> order;

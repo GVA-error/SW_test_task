@@ -14,6 +14,9 @@ namespace sw::entities
     class UnitHeap
     {
     public:
+        UnitHeap();
+        virtual ~UnitHeap(){}
+
         void  add(Unit&&);
         void  add(uint32_t unitId, const std::string& name);
         Unit& unitById(uint32_t unitId);
@@ -24,8 +27,6 @@ namespace sw::entities
         // Проверка корректно ли были удалены все мёртвые юниты.
         bool  isContainsDead() const;
 
-        UnitHeap();
-        virtual ~UnitHeap(){}
     protected:
         std::unordered_map<uint32_t, Unit> heap;
     };

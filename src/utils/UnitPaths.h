@@ -14,6 +14,7 @@ namespace sw::utils
     {
     public:
         UnitPaths();
+        virtual ~UnitPaths(){};
 
         // Устанавливает точку цели для юнита
         void setUnitTarget(uint32_t id, const FieldPos&);

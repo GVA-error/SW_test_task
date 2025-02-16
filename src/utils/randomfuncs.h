@@ -15,7 +15,6 @@ namespace sw::utils
         std::advance(it, i_c);
         return *it;
     }
-
 }
 
 #endif // RANDOMFUNCS_H

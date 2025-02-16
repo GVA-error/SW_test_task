@@ -11,7 +11,7 @@ namespace sw::mechanics
 {
     using namespace sw::entities;
 
-    // Минимальный результат атаки для функционирования механик.
+    // Минимальный результат для функционирования механик.
     struct BaseResult
     {
         bool     f_activity          = false;      // механика была воспроизведена.

@@ -29,6 +29,7 @@ namespace sw::entities
     {
     public:
         GameField() = delete;
+        virtual ~GameField(){};
         GameField(uint32_t width, uint32_t height);
 
         // Добавляет бекенд для юнита
