@@ -1,11 +1,13 @@
 #pragma once
 
 #include <memory>
-#include "entities/gamefield.h"
+
+#include <IO/System/EventLog.hpp>
+
 #include "entities/unitsheap.h"
-#include "mechanics/Spawn.h"
+#include "entities/gamefield.h"
 #include "utils/MoveOrder.h"
-#include "IO/System/EventLog.hpp"
+#include "mechanics/Spawn.h"
 
 namespace sw::AI
 {

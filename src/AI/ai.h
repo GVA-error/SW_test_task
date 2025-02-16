@@ -1,10 +1,12 @@
 #pragma once
 
 #include <memory>
-#include "entities/gamefield.h"
-#include "entities/Unit.h"
+
+#include <IO/System/EventLog.hpp>
+
 #include "entities/unitsheap.h"
-#include "IO/System/EventLog.hpp"
+#include "entities/Unit.h"
+#include "entities/gamefield.h"
 
 namespace sw::AI
 {

@@ -6,13 +6,14 @@
 #include <unordered_set>
 #include <unordered_map>
 #include <list>
+
 #include <IO/Commands/March.hpp>
 #include <IO/Commands/SpawnHunter.hpp>
 #include <IO/Commands/SpawnSwordsman.hpp>
 
+#include "entities/Unit.h"
 #include "utils/Coordinates.h"
 #include "utils/UnitPaths.h"
-#include "entities/Unit.h"
 
 namespace sw::entities
 {

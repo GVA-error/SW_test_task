@@ -2,10 +2,11 @@
 
 #include <memory>
 
-#include "IO/System/EventLog.hpp"
-#include "entities/gamefield.h"
+#include <IO/System/EventLog.hpp>
+#include <IO/System/EventLog.hpp>
+
 #include "entities/Unit.h"
-#include "IO/System/EventLog.hpp"
+#include "entities/gamefield.h"
 
 // Описывем как АИ использует механики марша.
 namespace sw::AI::primitive

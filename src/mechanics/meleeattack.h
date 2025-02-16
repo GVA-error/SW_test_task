@@ -2,10 +2,10 @@
 
 #include <memory>
 
-#include "entities/gamefield.h"
 #include "entities/Unit.h"
 #include "entities/UnitEnums.h"
 #include "entities/unitsheap.h"
+#include "entities/gamefield.h"
 #include "mechanics/mechanicsresults.h"
 #include "mechanics/attack.h"
 

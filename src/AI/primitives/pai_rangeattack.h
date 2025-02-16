@@ -2,12 +2,13 @@
 
 #include <memory>
 
-#include "IO/System/EventLog.hpp"
-#include "IO/System/EventLog.hpp"
-#include "entities/gamefield.h"
-#include "entities/Unit.h"
+#include <IO/System/EventLog.hpp>
+#include <IO/System/EventLog.hpp>
+
 #include "entities/UnitEnums.h"
+#include "entities/Unit.h"
 #include "entities/unitsheap.h"
+#include "entities/gamefield.h"
 
 // Описывем как АИ использует механики дальнего боя.
 namespace sw::AI::primitive

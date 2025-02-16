@@ -2,8 +2,8 @@
 
 #include <memory>
 
-#include "entities/gamefield.h"
 #include "entities/Unit.h"
+#include "entities/gamefield.h"
 #include "mechanics/mechanicsresults.h"
 
 // Механики марша

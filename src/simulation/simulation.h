@@ -19,12 +19,12 @@
 #include <IO/Events/UnitSpawned.hpp>
 #include <IO/System/EventLog.hpp>
 
-#include "entities/gamefield.h"
 #include "entities/unitsheap.h"
+#include "entities/gamefield.h"
 #include "utils/MoveOrder.h"
 #include "AI/AI_OrderPreparation.h"
-#include "AI/ai_TurnMaster.h"
 #include "AI/AI_UnitSpawner.h"
+#include "AI/ai_TurnMaster.h"
 
 namespace sw
 {

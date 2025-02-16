@@ -1,8 +1,8 @@
-#include "AI_Hunter.h"
 #include "entities/UnitEnums.h"
 #include "AI/primitives/pai_rangeattack.h"
 #include "AI/primitives/pai_meleeattack.h"
 #include "AI/primitives/pai_march.h"
+#include "AI_Hunter.h"
 
 namespace sw::AI
 {

@@ -4,7 +4,6 @@
 
 namespace sw
 {
-
     Simulation::Simulation()
     {
         unitsHeap         = std::make_shared<entities::UnitHeap>();
@@ -103,6 +102,4 @@ namespace sw
     {
         spawnCommand<AI::AI_Hunter>(h);
     }
-
-
 }

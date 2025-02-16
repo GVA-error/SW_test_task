@@ -1,6 +1,5 @@
 #include "ai_TurnMaster.h"
 
-
 namespace sw::AI
 {
     bool AI_TurnMaster::tick(uint32_t currentTick)

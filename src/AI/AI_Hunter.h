@@ -2,7 +2,6 @@
 
 #include "ai.h"
 
-
 namespace sw::AI
 {
     // Описывает поведение охотника во время хода
@@ -14,6 +13,5 @@ namespace sw::AI
 
         bool tick(sw::entities::Unit&, uint32_t tickNumber) override;
     };
-
 }
 

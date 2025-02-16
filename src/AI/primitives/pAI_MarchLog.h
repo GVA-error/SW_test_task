@@ -1,7 +1,8 @@
 #pragma once
 
-#include "IO/System/EventLog.hpp"
-#include "IO/System/EventLog.hpp"
+#include <IO/System/EventLog.hpp>
+#include <IO/System/EventLog.hpp>
+
 #include "entities/Unit.h"
 #include "mechanics/mechanicsresults.h"
 

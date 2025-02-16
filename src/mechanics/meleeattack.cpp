@@ -1,6 +1,5 @@
 #include "meleeattack.h"
 
-
 namespace sw::mechanics
 {
     MeleeAttackResult tryToRandomMeleeAttack(std::shared_ptr<GameField>& gf, std::shared_ptr<UnitHeap>& uh, Unit& u,

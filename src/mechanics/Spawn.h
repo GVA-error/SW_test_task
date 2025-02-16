@@ -2,11 +2,11 @@
 
 #include <memory>
 
-#include "IO/Commands/SpawnSwordsman.hpp"
-#include "IO/Commands/SpawnHunter.hpp"
-#include "entities/Unit.h"
-#include "entities/gamefield.h"
+#include <IO/Commands/SpawnSwordsman.hpp>
+#include <IO/Commands/SpawnHunter.hpp>
+
 #include "entities/unitsheap.h"
+#include "entities/gamefield.h"
 #include "mechanics/mechanicsresults.h"
 
 // Механики создания юнитов на игровом поле

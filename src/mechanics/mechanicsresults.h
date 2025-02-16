@@ -2,6 +2,7 @@
 
 #include <cstdint>
 #include <string>
+
 #include "utils/Coordinates.h"
 #include "entities/UnitEnums.h"
 

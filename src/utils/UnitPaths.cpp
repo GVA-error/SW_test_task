@@ -1,7 +1,6 @@
 #include "UnitPaths.h"
 #include <climits>
 
-
 namespace sw::utils
 {
     UnitPaths::UnitPaths() {}

@@ -1,9 +1,9 @@
 #pragma once
 
 #include <memory>
+#include "entities/unitsheap.h"
 #include "entities/Unit.h"
 #include "entities/gamefield.h"
-#include "entities/unitsheap.h"
 
 // Общая механика атаки - нанесение одним юнитом урона другому.
 // С возможностью смерти

@@ -1,10 +1,11 @@
 #pragma once
 
-#include "IO/System/EventLog.hpp"
+#include <IO/System/EventLog.hpp>
+#include <IO/System/EventLog.hpp>
+#include <IO/Events/UnitAttacked.hpp>
+#include <IO/Events/UnitDied.hpp>
+
 #include "entities/Unit.h"
-#include "IO/System/EventLog.hpp"
-#include "IO/Events/UnitAttacked.hpp"
-#include "IO/Events/UnitDied.hpp"
 
 // вывод лога для атак
 namespace sw::AI::primitive

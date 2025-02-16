@@ -25,8 +25,6 @@
  * - orderPreparationAI->turnPreparationAI
  * - проверка орфографии
  * - hpp
- * - pragma once
- * - сортировка хедеров по порядку абстракции
  *
  * Тесты
  * - юнит с тем же id

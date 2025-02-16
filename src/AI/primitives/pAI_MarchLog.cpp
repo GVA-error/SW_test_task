@@ -1,7 +1,7 @@
 #include "pAI_MarchLog.h"
 
-#include "IO/Events/MarchEnded.hpp"
-#include "IO/Events/UnitMoved.hpp"
+#include <IO/Events/MarchEnded.hpp>
+#include <IO/Events/UnitMoved.hpp>
 
 namespace sw::AI::primitive
 {
