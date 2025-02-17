@@ -11,24 +11,20 @@ namespace sw::AI::primitive
         // Выводим лог только если атака была произведена
         if (moveRes.f_activity)
         {
-            // Удалось сделать шаг
-            if (moveRes.f_activity)
-            {
-                sw::io::UnitMoved moveEvent;
-                moveEvent.unitId = moveRes.unitId;
-                moveEvent.x      = moveRes.newX;
-                moveEvent.y      = moveRes.newY;
-                eventLog.log(tickNumber, std::move(moveEvent));
+            sw::io::UnitMoved moveEvent;
+            moveEvent.unitId = moveRes.unitId;
+            moveEvent.x      = moveRes.newX;
+            moveEvent.y      = moveRes.newY;
+            eventLog.log(tickNumber, std::move(moveEvent));
 
-                // Это был последний шаг марша
-                if (moveRes.f_marchEnded)
-                {
-                    sw::io::MarchEnded marchEndedEvent;
-                    marchEndedEvent.unitId = moveRes.unitId;
-                    marchEndedEvent.x      = moveRes.newX;
-                    marchEndedEvent.y      = moveRes.newY;
-                    eventLog.log(tickNumber, std::move(marchEndedEvent));
-                }
+            // Это был последний шаг марша
+            if (moveRes.f_marchEnded)
+            {
+                sw::io::MarchEnded marchEndedEvent;
+                marchEndedEvent.unitId = moveRes.unitId;
+                marchEndedEvent.x      = moveRes.newX;
+                marchEndedEvent.y      = moveRes.newY;
+                eventLog.log(tickNumber, std::move(marchEndedEvent));
             }
         }
     }

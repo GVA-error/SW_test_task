@@ -17,6 +17,13 @@ namespace sw
 
     void Simulation::command(sw::io::Tick& tick)
     {
+        if (gameField == nullptr)
+        {
+            eventLog.log(currentTick, sw::io::Error("Simulation::Tick field is not created. Use Simulation::CreateMap before. Simulation done."));
+            simulationStatus.isFinished = true;
+            return;
+        }
+
         simulationStatus.isFinished = false;
         simulationStatus.tick = currentTick;
 
