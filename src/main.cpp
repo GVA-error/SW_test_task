@@ -70,6 +70,7 @@ int main(int argc, char** argv)
         auto status = simulation.getSimulationStatus();
         if (status.isFinished)
             break;
+        sleep(1);
     }
 
 	return 0;

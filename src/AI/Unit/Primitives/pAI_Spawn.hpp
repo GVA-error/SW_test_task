@@ -21,6 +21,6 @@ namespace sw::AI::primitive
     {
         auto res = sw::mechanics::Spawn(gf, uh, command);
         pAI_SpawnLog(res, tickNumber, eventLog);
-        return true;
+        return res.f_isCorrect;
     }
 }

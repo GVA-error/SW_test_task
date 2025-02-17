@@ -19,6 +19,8 @@ namespace sw::entities
 
     Unit& UnitHeap::unitById(uint32_t unitId)
     {
+        // предотвращаем создание Unit где либо кроме add
+        assert(heap.find(unitId) != heap.end());
         return heap[unitId];
     }
 

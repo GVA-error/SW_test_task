@@ -14,14 +14,14 @@ namespace sw::entities
     class Unit
     {
     public:
-        Unit(){};
+        Unit() {};
+        // Копирование юнита опасно, так как может нарушить поведение AI
+        Unit(const Unit&) = delete;
         virtual ~Unit(){};
 
         // id   - уникальный идинтификатор юнита
         // name - по умолчанию обозначает тип юнита.
         Unit(uint32_t id, const std::string& name = "defaultUnit");
-        // Копирование юнита опасно, так как может нарушить поведение AI
-        Unit(const Unit&) = delete;
 
         const uint32_t    getId() const;
         const std::string getName() const;

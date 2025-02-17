@@ -33,6 +33,21 @@ namespace sw::entities
         return unitPosition.at(unitId);
     }
 
+    bool GameField::isOutOfField(uint32_t x, uint32_t y) const
+    {
+        bool f_outOfMap = false;
+        f_outOfMap |= x < 0;
+        f_outOfMap |= y < 0;
+        f_outOfMap |= x >= width;
+        f_outOfMap |= y >= height;
+        return f_outOfMap;
+    }
+
+    bool GameField::isOutOfField(const FieldPos& pos) const
+    {
+        return isOutOfField(pos.x, pos.y);
+    }
+
     void GameField::March(uint32_t unitId, uint32_t targetX, uint32_t targetY)
     {
         unitPaths.setUnitTarget(unitId, targetX, targetY);

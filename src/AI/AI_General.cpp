@@ -18,6 +18,12 @@ namespace sw::AI
     bool AI_General::MARCH(uint32_t tickNumber, std::shared_ptr<sw::entities::GameField>& gf,
                            uint32_t unitId, const FieldPos& targetPos)
     {
+        // Попытка отдать приказ не существующему юниту не возможна
+        if (unitHeap->contains(unitId) == false)
+        {
+            eventLog.log(tickNumber, sw::io::Error("Simulation::March field unit is not exists."));
+            return false;
+        }
         auto& unit = unitHeap->unitById(unitId);
         return MARCH(tickNumber, gf, unit, targetPos);
     }
@@ -25,24 +31,13 @@ namespace sw::AI
     bool AI_General::MARCH(uint32_t tickNumber, std::shared_ptr<sw::entities::GameField>& gf,
                            Unit& u, const FieldPos& targetPos)
     {
-
-        auto w = gf->getWidth();
-        auto h = gf->getHeight();
-
         auto unitPos = gf->getUnitPosition(u.getId());
         if (unitPos == utils::UNDEFINED_POSITION)
         {
             eventLog.log(tickNumber, sw::io::Error("Simulation::March field is not created. Use Simulation::CreateMap before."));
             return false;
         }
-
-        bool f_outOfMap = false;
-        f_outOfMap |= targetPos.x < 0;
-        f_outOfMap |= targetPos.y < 0;
-        f_outOfMap |= targetPos.x >= w;
-        f_outOfMap |= targetPos.y >= h;
-
-        if (f_outOfMap)
+        if (gf->isOutOfField(targetPos))
         {
             eventLog.log(tickNumber, sw::io::Error("Simulation::March incorrect position. Target is out of map."));
             return false;

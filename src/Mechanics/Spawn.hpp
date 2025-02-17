@@ -33,6 +33,11 @@ namespace sw::mechanics
             res.incorrectnessReason = "Can not spawn unit without field";
             return res;
         }
+        if (gf->isOutOfField(u.x, u.y))
+        {
+            res.incorrectnessReason = "Can not spawn unit out off field";
+            return res;
+        }
         uh->add(u.unitId, name);
         auto& unit = uh->unitById(u.unitId);
         unit.set(UnitType::LAND_SOLID);

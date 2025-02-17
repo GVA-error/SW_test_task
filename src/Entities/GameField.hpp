@@ -80,6 +80,9 @@ namespace sw::entities
         // Позиция юнита на поле
         const FieldPos& getUnitPosition(const sw::entities::Unit&) const;
         const FieldPos& getUnitPosition(uint32_t unitId) const;
+        // Позиция вне полу
+        bool isOutOfField(const FieldPos&) const;
+        bool isOutOfField(uint32_t x, uint32_t y) const;
 
     private:
         // Размеры поля

@@ -77,8 +77,9 @@ namespace sw
         template <class UnitAI, typename TCommand>
         void spawnCommand(TCommand& command)
         {
-            unitSpawnerAI->spawn(gameField, currentTick, command);
-            turnMasterAI->setUnitAI<UnitAI>(command.unitId, gameField);
+            bool f_success = unitSpawnerAI->spawn(gameField, currentTick, command);
+            if (f_success)
+                turnMasterAI->setUnitAI<UnitAI>(command.unitId, gameField);
         }
     };
 }
