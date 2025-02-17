@@ -21,12 +21,12 @@ namespace sw::entities
         return height;
     }
 
-    FieldPos GameField::getUnitPosition(const sw::entities::Unit& u) const
+    const FieldPos& GameField::getUnitPosition(const sw::entities::Unit& u) const
     {
         return getUnitPosition(u.getId());
     }
 
-    sw::utils::FieldPos GameField::getUnitPosition(uint32_t unitId) const
+    const FieldPos& GameField::getUnitPosition(uint32_t unitId) const
     {
         if (unitPosition.find(unitId) == unitPosition.end())
             return utils::UNDEFINED_POSITION;

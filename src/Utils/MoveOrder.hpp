@@ -27,7 +27,7 @@ namespace sw::utils
         void erase(uint32_t unitId);
         uint32_t size() const;
         // Вернёт готовую для использования очерёдность хода.
-        const std::vector<uint32_t> getTurnQueue();
+        const std::vector<uint32_t>& getTurnQueue();
     private:
         // mutable требуется для ленивого clearDead
         // очерёдность ходов

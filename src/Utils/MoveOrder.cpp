@@ -6,12 +6,10 @@ namespace sw::utils
 {
     MoveOrder::MoveOrder()
     {
-        // важно для лучшей аммортизированности.
-        // так как getBuffer.push_back() на низких capacity не так эффективен
         getBuffer.reserve(preReserveSize);
     }
 
-    const std::vector<uint32_t> MoveOrder::getTurnQueue()
+    const std::vector<uint32_t>& MoveOrder::getTurnQueue()
     {
         getBuffer.clear();
         if (order.size() == 0)

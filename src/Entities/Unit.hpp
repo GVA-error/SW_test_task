@@ -17,7 +17,7 @@ namespace sw::entities
         Unit(){};
         virtual ~Unit(){};
 
-        // id - уникальный идинтификатор юнита
+        // id   - уникальный идинтификатор юнита
         // name - по умолчанию обозначает тип юнита.
         Unit(uint32_t id, const std::string& name = "defaultUnit");
         // Копирование юнита опасно, так как может нарушить поведение AI
@@ -31,29 +31,22 @@ namespace sw::entities
         int32_t getAttribute(const UnitAttributes&) const;
         int32_t getState(const UnitStatus&) const;
         int32_t is(const UnitType&) const;
+        // Геттеры с условием
+        bool    isDead() const;
+        int32_t getCurrentHP() const;
 
         // Обновляет значения стат блока
         void set(const UnitMechanic&, bool f = true);
         void set(const UnitAttributes&, int32_t value);
         void set(const UnitStatus&, int32_t value);
         void set(const UnitType&);
-
-        // Контекстные геттеры
-        bool isDead() const;
-        int32_t getCurrentHP() const;
-
-        // Контекстные сеттеры
+        // Сеттеры с условиями
         void takeDamage(int32_t damageHpImpact);
 
     private:
-        // typeName используется для более простого дебага
+        // name используется для более простого дебага
         std::string name;
         uint32_t id;
-
-        // Был ли юнит создан корректно, не было ли иных ошибок.
-        bool f_isCorrect = true;
-        // Описание причины не корректности
-        std::string incorrectnessReason;
 
         // Стат блок
         std::unordered_map<UnitMechanic,   bool>    mechanic;

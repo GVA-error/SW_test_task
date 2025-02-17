@@ -59,7 +59,6 @@ namespace sw::entities
         type[t] = true;
     }
 
-    // Контекстные геттеры
     bool Unit::isDead() const
     {
         return getCurrentHP() == 0;
@@ -70,7 +69,6 @@ namespace sw::entities
         return status.at(UnitStatus::HP);
     }
 
-    // Контекстные сеттеры
     void Unit::takeDamage(int32_t damageHpImpact)
     {
         auto curHp = getCurrentHP();

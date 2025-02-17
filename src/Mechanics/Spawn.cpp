@@ -27,7 +27,7 @@ namespace sw::mechanics
         if (h.range < 2)
         {
             SpawnResult res;
-            res.incorrectnessReason = "we try SpawnHunter with small range";
+            res.incorrectnessReason = "we try to SpawnHunter with small range";
             return res;
         }
         auto res = __baseLiveUnit(gf, uh, h, "SpawnHunter");

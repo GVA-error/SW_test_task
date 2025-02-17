@@ -31,10 +31,10 @@ namespace sw::entities
         virtual ~GameField(){};
         GameField(uint32_t width, uint32_t height);
 
-        // Добавляет бекенд для юнита
+        // Добавляет физический бекенд для юнита
         bool addUnit(sw::entities::Unit&, uint32_t x, uint32_t y);
 
-        // Обновляет позицию юнита. При коллизии юнит ищет обход через клетку на таком же расстоянии от цели марша.
+        // Обновляет позицию юнита. При коллизии юнит ищет обход через клетку ближайшую от цели марша.
         // Для более простого решения коллизий быстрых юнитов, всегда двигаемся на один шаг.
         // Пример: если юнит обладает скоростью 5, то step() должна быть вызвана 5 раз за ход.
         // Если юнит двигался или ждал, возвращает true.
@@ -77,8 +77,9 @@ namespace sw::entities
         uint32_t getWidth()  const;
         uint32_t getHeight() const;
 
-        FieldPos getUnitPosition(const sw::entities::Unit&) const;
-        FieldPos getUnitPosition(uint32_t unitId) const;
+        // Позиция юнита на поле
+        const FieldPos& getUnitPosition(const sw::entities::Unit&) const;
+        const FieldPos& getUnitPosition(uint32_t unitId) const;
 
     private:
         // Размеры поля
@@ -104,8 +105,11 @@ namespace sw::entities
         // Просчитывает пути, давая следующую точку для шага
         sw::utils::UnitPaths unitPaths;
 
+        // Полное уничтожение о информации о юните c поля
         void deleteUnit(uint32_t unitId);
+        // Если на позиции есть живые юниты, то вернёт id случайного, иначе UNDEFINED_UNIT_ID
         uint32_t findRandomLiveUnitInPos(uint32_t x, uint32_t y) const;
+        // Даёт все позиции в квадрате со стороной 2*radius + 1 и центром в позиции поля.
         std::list<FieldPos> getPositionsInSqrtRadius(const FieldPos&, uint32_t radius) const;
     };
 }

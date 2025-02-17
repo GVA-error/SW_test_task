@@ -14,7 +14,7 @@ namespace sw::entities
 
     void UnitHeap::add(uint32_t unitId, const std::string& name)
     {
-        add(Unit(unitId, name));
+        add(std::move(Unit(unitId, name)));
     }
 
     Unit& UnitHeap::unitById(uint32_t unitId)
