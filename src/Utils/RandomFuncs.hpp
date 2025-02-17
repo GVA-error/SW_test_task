@@ -6,6 +6,7 @@
 
 namespace sw::utils
 {
+    // Берём случайный элемент из контейнера
     template <class CONTAINER>
     auto randomChoice(const CONTAINER& cont)
     {

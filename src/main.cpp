@@ -12,24 +12,6 @@
 
 #include "Simulation/Simulation.hpp"
 
-/*
- * - проверка орфографии
- *
- * Тесты
- * - юнит с тем же id
- * - не создание поля/юнита
- * - 1x1 1x2 1x100
- * - volgrind симулировать намеренно утечку памяти AI
- * - проверить атакует ли лучник сразу
- * - Более серьёзная проверка с использованием обычного cmake.
- */
-
-/*
- * Возможные улучшения:
- * 1) Функции проверки инвариант поля. К примеру, количество занятых клеток должно быть равно количеству юнитов занимающих клетку
- * 2) Юнит тестирование. Если зерно random зафиксировано, то мы можем добиться детерменированного результата.
- */
-
 int main(int argc, char** argv)
 {
 	using namespace sw;
@@ -37,14 +19,12 @@ int main(int argc, char** argv)
     // Поэтому для детерминированности используем фиксированный сид.
     std::srand(42);
 
-	/*if (argc != 2)
+    if (argc != 2)
 	{
 		throw std::runtime_error("Error: No file specified in command line argument");
 	}
 	std::ifstream file(argv[1]);
-	*/
-    std::ifstream file("/home/gva/projects/SW_test_task/commands_example.txt");
-	
+
     if (!file)
 	{
 		throw std::runtime_error("Error: File not found - " + std::string(argv[1]));
@@ -70,7 +50,7 @@ int main(int argc, char** argv)
         auto status = simulation.getSimulationStatus();
         if (status.isFinished)
             break;
-        sleep(1);
+        //sleep(1);
     }
 
 	return 0;

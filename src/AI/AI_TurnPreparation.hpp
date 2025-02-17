@@ -22,8 +22,8 @@ namespace sw::AI
         }
         virtual ~AI_TurnPraparation() {};
 
-        void orderPreparation(std::shared_ptr<GameField>&);
-        void orderPostHandle(std::shared_ptr<GameField>&);
+        void turnPreparation(std::shared_ptr<GameField>&);
+        void turnPostHandle(std::shared_ptr<GameField>&);
 
     protected:
         std::shared_ptr<UnitHeap>  unitsHeap;

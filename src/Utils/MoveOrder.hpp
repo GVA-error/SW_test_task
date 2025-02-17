@@ -14,7 +14,7 @@ namespace sw::utils
         // Чистить ли очередь от мертвецов
         const bool f_clearDead = true;
         // Размер заранее выделенной памяти.
-        // Важно для лучшей аммортизированности getBuffer.
+        // Важно для лучшей амортизированности getBuffer.
         // так как getBuffer.push_back() на низких capacity не так эффективен
         const uint32_t preReserveSize = 10;
     public:

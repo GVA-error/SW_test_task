@@ -8,7 +8,8 @@ namespace sw::AI::primitive
 {
     void pAI_MoveLog(mechanics::MarchResult& moveRes, uint32_t tickNumber, sw::EventLog& eventLog)
     {
-        // Выводим лог только если атака была произведена
+        // Выводим лог только если юнит двигался или ждал.
+        // Для детектирования использования механики шага, выводим шаг, даже если уже на финальной точке марша
         if (moveRes.f_activity)
         {
             sw::io::UnitMoved moveEvent;

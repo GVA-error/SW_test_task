@@ -4,7 +4,7 @@ namespace sw::AI
 {
     using namespace sw::entities;
 
-    void AI_TurnPraparation::orderPreparation(std::shared_ptr<GameField>& gf)
+    void AI_TurnPraparation::turnPreparation(std::shared_ptr<GameField>& gf)
     {
         // Убираем физическое претставление
         auto deadSet = gf->getDeadSet();
@@ -14,7 +14,7 @@ namespace sw::AI
         assert(unitsHeap->isContainsDead() == false);
     }
 
-    void AI_TurnPraparation::orderPostHandle(std::shared_ptr<GameField>& gf)
+    void AI_TurnPraparation::turnPostHandle(std::shared_ptr<GameField>& gf)
     {
 
     }

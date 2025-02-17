@@ -18,6 +18,7 @@ namespace sw::AI::primitive
     bool pAI_tryToStartMarch(std::shared_ptr<GameField>& gf, Unit& u, const FieldPos& targetPos,
                              uint32_t tickNumber, sw::EventLog& eventLog)
     {
+        // Пробуем начать марш
         auto startRes = mechanics::tryToStartMarch(gf, u, targetPos);
         pAI_MarchStartLog(startRes, tickNumber, eventLog);
         return startRes.f_activity;

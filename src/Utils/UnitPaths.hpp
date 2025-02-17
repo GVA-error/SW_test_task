@@ -22,7 +22,7 @@ namespace sw::utils
 
         // Передвигает юнита на новую позицию из возможных, на один шаг. Выбирает наиболее близкую к цели.
         // Дойдя до финальной точки, юнит остановится.
-        // unitPos - позиция которую меняем.
+        // unitPos - позиция, которую меняем.
         bool step(uint32_t id, const std::set<FieldPos>& landObstacle,
                   FieldPos& unitPos, uint32_t fieldWidth, uint32_t fieldHeight);
         // Если юниту не важны препятствия

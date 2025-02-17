@@ -19,7 +19,7 @@ namespace sw::entities
 {
     using namespace sw::utils;
     /*
-     *  Хранит и обрабатывает пространственую информацию.
+     *  Хранит и обрабатывает пространственную информацию.
      *  Является бекэндом для позиций юнитов и препятствий.
      *  Отвечает за коллизии, поиск целей и т. п.
      *  FieldPos - система координат из utils/Coordinates.h
@@ -40,8 +40,8 @@ namespace sw::entities
         // Если юнит двигался или ждал, возвращает true.
         bool step(Unit&);
 
-        // Обозначаем юнита как мёртвого. Теперь он не куда не пойдёт.
-        // Но будет препядствием пока не будет вызвана eraseDeadUnits
+        // Обозначаем юнита как мёртвого. Теперь он некуда не пойдёт.
+        // Но будет препятствием пока не будет вызвана eraseDeadUnits
         void kill(uint32_t unitId);
         bool isDead(uint32_t unitId) const;
         bool isDead(const Unit&) const;
@@ -50,7 +50,7 @@ namespace sw::entities
         // исходит от command::March
         void March(uint32_t unitId, uint32_t targetX, uint32_t targetY);
 
-        // Стремиться ли юнит куда либо
+        // Стремиться ли юнит куда-либо
         bool onMarch(const Unit&) const;
         // .. куда
         const FieldPos& getMarchTargetPos(const Unit&) const;
@@ -108,7 +108,7 @@ namespace sw::entities
         // Просчитывает пути, давая следующую точку для шага
         sw::utils::UnitPaths unitPaths;
 
-        // Полное уничтожение о информации о юните c поля
+        // Полное уничтожение информации о юните c поля
         void deleteUnit(uint32_t unitId);
         // Если на позиции есть живые юниты, то вернёт id случайного, иначе UNDEFINED_UNIT_ID
         uint32_t findRandomLiveUnitInPos(uint32_t x, uint32_t y) const;

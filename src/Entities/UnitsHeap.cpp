@@ -19,7 +19,7 @@ namespace sw::entities
 
     Unit& UnitHeap::unitById(uint32_t unitId)
     {
-        // предотвращаем создание Unit где либо кроме add
+        // предотвращаем создание Unit способами отличными от add
         assert(heap.find(unitId) != heap.end());
         return heap[unitId];
     }

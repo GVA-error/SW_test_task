@@ -26,6 +26,8 @@ namespace sw::AI
         // Возвращает было ли совершено какое либо действие.
         bool tick(uint32_t tickNumber);
 
+        // Добавляем юниту мозгов. Пример вызова ai_TurnMaster->setUnitAI<AI::AI_Unit>(unitId, gameField);
+        // AI_UNIT - наследник AI::AI_Unit.
         template <class UNIT_AI>
         void setUnitAI(uint32_t unitId, std::shared_ptr<GameField>& gf)
         {

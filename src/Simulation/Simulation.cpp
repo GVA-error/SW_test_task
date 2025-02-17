@@ -27,13 +27,13 @@ namespace sw
         simulationStatus.isFinished = false;
         simulationStatus.tick = currentTick;
 
-        turnPreparationAI->orderPreparation(gameField);
+        turnPreparationAI->turnPreparation(gameField);
         bool isActivityFound = turnMasterAI->tick(currentTick);
         if (isActivityFound)
             simulationStatus.isFinished = false;
         else
             simulationStatus.isFinished = true;
-        turnPreparationAI->orderPostHandle(gameField);
+        turnPreparationAI->turnPostHandle(gameField);
 
         currentTick++;
     }
