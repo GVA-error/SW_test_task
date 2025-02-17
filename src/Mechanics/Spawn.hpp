@@ -48,6 +48,7 @@ namespace sw::mechanics
             uh->erase(u.unitId);
             return res;
         }
+
         res.f_isCorrect = true;
 
         res.unitId   = unit.getId();
@@ -70,6 +71,9 @@ namespace sw::mechanics
         auto& unit = uh->unitById(u.unitId);
         unit.set(UnitMechanic::MOVE);
         unit.set(UnitStatus::HP, u.hp);
+        // Спаун мертвеца
+        if (unit.isDead())
+            gf->kill(unit.getId());
         return res;
     }
 
