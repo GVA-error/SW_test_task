@@ -18,7 +18,7 @@ namespace sw::AI
     bool AI_General::MARCH(uint32_t tickNumber, std::shared_ptr<sw::entities::GameField>& gf,
                            uint32_t unitId, const FieldPos& targetPos)
     {
-        // Попытка отдать приказ не существующему юниту не возможна
+        // Отдать приказ не существующему юниту не возможно
         if (unitHeap->contains(unitId) == false)
         {
             eventLog.log(tickNumber, sw::io::Error("Simulation::March field unit is not exists."));

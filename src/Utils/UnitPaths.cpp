@@ -39,9 +39,9 @@ namespace sw::utils
         uint32_t bestDistance = UINT_MAX;
         for (const auto& c : candidates)
         {
-            if (c.x > fieldWidth)
+            if (c.x >= fieldWidth)
                 continue;
-            if (c.y > fieldHeight)
+            if (c.y >= fieldHeight)
                 continue;
             if (landObstacle.find(c) != landObstacle.end())
                 continue;
