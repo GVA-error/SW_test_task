@@ -223,7 +223,6 @@ namespace sw::entities
         if (unitIsLandObstacle[unitId])
             landObstacle.erase(unitPos);
         unitIsLandObstacle.erase(unitId);
-        //unitPaths.
         unitsOnPosition[unitPos].erase(unitId);
         if (unitsOnPosition[unitPos].size() == 0)
             unitsOnPosition.erase(unitPos);
